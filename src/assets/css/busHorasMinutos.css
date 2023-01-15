@@ -1,0 +1,17 @@
+.seccion-tiempo {
+    width: 100%;
+    max-height: calc(100vh - 260px); /* 100px is the height of the navbar */
+    min-height: auto;
+}
+
+.font-time {
+    font-family: 'Orbitron', sans-serif;
+}
+
+.font-large {
+    font-size: large;
+}
+
+.font-time-title {
+    font-size: 8vw;
+}

@@ -1,0 +1,38 @@
+<div class="login-container">
+  <div class="overlay"></div>
+</div>
+
+<div class="login-principal">
+  <div class="login-titulo">
+    <div class="letra-uno color-verde">Quantus</div>
+    <div class="letra-dos">MaqV2</div>
+  </div>
+  <input
+    type="text"
+    id="usuario"
+    name="usuario"
+    class="login-input"
+    placeholder="Usuario"
+    [(ngModel)]="_usuario"
+  />
+
+  <input
+    type="password"
+    id="passw"
+    name="passw"
+    class="login-input"
+    [(ngModel)]="_passw"
+    placeholder="Contraseña"
+  />
+  <button
+    type="button"
+    id="aceptar"
+    name="aceptar"
+    class="login-button"
+    (click)="btnAceptar()"
+  >
+    Aceptar
+  </button>
+</div>
+
+<app-loading-circle *ngIf="_loading"></app-loading-circle>

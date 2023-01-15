@@ -1,0 +1,30 @@
+<br />
+<div class="seccion-titulo">
+  <div class="menu-catalogos">
+    <h2 class="colorBlanco">Menú</h2>
+  </div>
+  <hr />
+</div>
+<div class="seccion-principal">
+  <ul class="list-cards">
+    <li
+      *ngFor="let item of _menuList"
+      class="menu-item table-row"
+      (click)="btnAccion(item.idMenu)"
+    >
+      <div style="font-size: xx-large; margin-top: auto; margin-bottom: auto">
+        <i [class]="item.icono"></i>
+      </div>
+      <div
+        style="
+          margin-left: 20px;
+          text-align: left;
+          margin-top: auto;
+          margin-bottom: auto;
+        "
+      >
+        {{ item.Nombre }}
+      </div>
+    </li>
+  </ul>
+</div>

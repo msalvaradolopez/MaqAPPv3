@@ -1,0 +1,24 @@
+<header class="header" *ngIf="_headerSiNo">
+  <div class="titulo">
+    <div class="letra-uno color-verde">Quantus</div>
+    <div class="letra-dos">MaqV2</div>
+  </div>
+
+  <input
+    type="text"
+    class="search-box"
+    placeholder="Buscar..."
+    autocomplete="off"
+    (keyup)="onKeypressEvent($event)"
+  />
+
+  <h5 class="colorBlanco fecha-class">
+    {{ _fechaActual | date: "mediumDate" }}
+  </h5>
+  <div class="menu-header">
+    <h5 class="colorBlanco nom-login">{{_siglasUsuario}}</h5>
+    <a class="botones-menu" (click)="btnAccion()"
+      ><i class="fa-solid fa-bars"></i>
+    </a>
+  </div>
+</header>
