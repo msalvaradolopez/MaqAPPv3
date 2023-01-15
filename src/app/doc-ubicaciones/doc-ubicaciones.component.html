@@ -1,0 +1,41 @@
+<br />
+<div class="seccion-titulo">
+  <div class="menu-catalogos">
+    <h2 class="colorBlanco">Ubicaciones</h2>
+    <div style="max-width: 350px; min-width: 100px">
+      <a class="boton-filtros" (click)="btnFiltros()">
+        <i class="fa-solid fa-filter centrar-icono icono-xlg"></i>
+        <span class="textoBtn"> &thinsp;Filtrar</span>
+      </a>
+
+      <a class="boton-acciones color-verde" (click)="btnAgregar()">
+        <i class="fa-solid fa-circle-plus icono-xlg icono-plus-circle"></i>
+
+        <i class="fa-solid fa-plus icono-xlg centrar-icono icono-plus"></i>
+        <span class="textoBtn"> &thinsp;Nuevo</span>
+      </a>
+    </div>
+  </div>
+</div>
+<br />
+<div class="seccion-principal">
+  <ul class="list-cards">
+    <li
+      *ngFor="let item of _listado"
+      class="card-item table-row"
+      (click)="btnEditar(item)"
+    >
+      <div class="letra1">{{ item.idEconomico }} | {{ item.equipoNom }}</div>
+
+      <div class="letra2">
+        {{ item.obraNom }} | {{ item.operadorNom }} |
+        {{ item.fecha_alta | date: "mediumDate" }}
+      </div>
+      <div class="letra2">
+        {{ item.comentarios }}
+      </div>
+    </li>
+  </ul>
+  <app-sin-informacion *ngIf="_sinInfo"></app-sin-informacion>
+</div>
+<app-loading-circle *ngIf="_loading"></app-loading-circle>

@@ -1,0 +1,91 @@
+<br />
+<div class="seccion-titulo">
+  <div class="menu-catalogos">
+    <h2 class="colorBlanco">Consultas Bit Seguridad</h2>
+    <div style="max-width: 350px; min-width: 100px">
+      <a class="boton-filtros" (click)="btnFiltros()">
+        <i class="fa-solid fa-filter centrar-icono icono-xlg"></i>
+        <span class="textoBtn"> &thinsp;Filtrar</span>
+      </a>
+    </div>
+  </div>
+</div>
+<br />
+<div class="rectangle-standard vertical-scroll">
+  <table class="table-standard">
+    <thead>
+      <tr>
+        <th>Documento</th>
+        <th>Fecha</th>
+        <th>Planta</th>
+        <th>Supervisor</th>
+        <th>Area</th>
+        <th>Hora Inicio</th>
+        <th>Hora Termino</th>
+        <th>Equipo</th>
+        <th>Operador</th>
+        <th>Actividad</th>
+        <th>Punto exacto</th>
+        <th>Chequeo médico</th>
+        <th>Obs Chequeo médico</th>
+        <th>Check List Equipo</th>
+        <th>Obs Check List</th>
+        <th>A P R</th>
+        <th>Obs A P R</th>
+        <th>Permiso Instancia</th>
+        <th>Obs Permiso Instancia</th>
+        <th>DC3</th>
+        <th>Obs DC3</th>
+        <th>Extintor</th>
+        <th>Obs Extintor</th>
+        <th>Kit Antiderrames</th>
+        <th>Obs Kit Antiderrames</th>
+        <th>Platica 5 minutos</th>
+        <th>Obs Platica 5 minutos</th>
+        <th>E P P</th>
+        <th>Obs E P P</th>
+        <th>Otro</th>
+        <th>Desc Otro</th>
+        <th>Obs Otro</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of _listadoDet">
+        <td>{{ item.docBitacora }}</td>
+        <td style="width: 40px">{{ item.fecha | date : "dd/MM HH:mm" }}</td>
+        <td>{{ item.idObra }}</td>
+        <td>{{ item.idSupervisor }}</td>
+        <td>{{ item.area }}</td>
+        <td>{{ item.horaInicio }}</td>
+        <td>{{ item.horaTermino }}</td>
+        <td>{{ item.idEconomico }}</td>
+        <td>{{ item.idOperador }}</td>
+        <td>{{ item.actividad }}</td>
+        <td>{{ item.pto_exacto }}</td>
+        <td>{{ valoresRadioButtons(item.chequeo_medico) }}</td>
+        <td>{{ item.chequeo_medico_obs }}</td>
+        <td>{{ valoresRadioButtons(item.checklist_maq_equip) }}</td>
+        <td>{{ item.checklist_maq_equip_obs }}</td>
+        <td>{{ valoresRadioButtons(item.apr) }}</td>
+        <td>{{ item.apr_obs }}</td>
+        <td>{{ valoresRadioButtons(item.permiso_instancia) }}</td>
+        <td>{{ item.permiso_instancia_obs }}</td>
+        <td>{{ valoresRadioButtons(item.dc3) }}</td>
+        <td>{{ item.dc3_obs }}</td>
+        <td>{{ valoresRadioButtons(item.extintor) }}</td>
+        <td>{{ item.extintor_obs }}</td>
+        <td>{{ valoresRadioButtons(item.kit_antiderrames) }}</td>
+        <td>{{ item.kit_antiderrames_obs }}</td>
+        <td>{{ valoresRadioButtons(item.platica_5min) }}</td>
+        <td>{{ item.platica_5min_obs }}</td>
+        <td>{{ valoresRadioButtons(item.epp) }}</td>
+        <td>{{ item.epp_obs }}</td>
+        <td>{{ valoresRadioButtons(item.otro) }}</td>
+        <td>{{ item.otro_descrip }}</td>
+        <td>{{ item.otro_obs }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <app-sin-informacion *ngIf="_sinInfo"></app-sin-informacion>
+</div>
+<app-loading-circle *ngIf="_loading"></app-loading-circle>

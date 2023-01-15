@@ -1,0 +1,42 @@
+<br />
+<div class="seccion-titulo">
+  <div class="menu-catalogos">
+    <h2 class="colorBlanco">Horas / Minutos</h2>
+    <div style="max-width: 350px; min-width: 100px">
+      <a class="boton-regresar" (click)="btnRegresar()">
+        <i class="fa-solid fa-house icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;Regresar</span>
+      </a>
+      <a class="boton-guardar" (click)="btnGuardar()">
+        <i class="fa-solid fa-check icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;Aceptar</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="container-main row-line font-time font-time-title color-white row-line-center">
+  <p>{{ _horas }}</p>
+  <p>:</p>
+  <p>{{ _minutos }}</p>
+</div>
+<div class="container-main columns-2">
+  <div class="seccion-tiempo scroll">
+    <ul>
+      <li *ngFor="let item of _horasList" class="card" (click)="setHoras(item)">
+        <div class="letra1 font-time" style="overflow: auto">
+          {{ item }}
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="seccion-tiempo scroll">
+    <ul>
+      <li *ngFor="let item of _munutosList" class="card" (click)="setMinutos(item)">
+        <div class="letra1 font-time" style="overflow: auto">
+          {{ item }}
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

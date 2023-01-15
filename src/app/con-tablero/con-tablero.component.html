@@ -1,0 +1,33 @@
+<br />
+<br />
+<div class="seccion-tablero">
+  <ul class="list-cards">
+    <li *ngFor="let item of _listado" class="tablero-item">
+      <div class="rojo-class">
+        {{ item.idEconomico }}
+      </div>
+      <div class="neon-class">
+        {{ item.lunes }}
+      </div>
+      <div class="neon-class">
+        {{ item.martes }}
+      </div>
+      <div class="neon-class">
+        {{ item.miercoles }}
+      </div>
+      <div class="neon-class">
+        {{ item.jueves }}
+      </div>
+      <div class="neon-class">
+        {{ item.viernes }}
+      </div>
+      <div class="neon-class">
+        {{ item.sabado }}
+      </div>
+      <div class="neon-class">
+        {{ item.domingo }}
+      </div>
+    </li>
+  </ul>
+</div>
+<app-loading-circle *ngIf="_loading"></app-loading-circle>

@@ -1,0 +1,26 @@
+<br />
+<div class="seccion-titulo">
+  <div class="menu-catalogos">
+    <h2 class="colorBlanco">Equipos - busqueda</h2>
+    <a class="boton-regresar color-verde" (click)="btnRegresar()">
+      <i class="fa-solid fa-house icono-xlg centrar-icono"></i>
+      <span class="textoBtn"> &thinsp;Regresar</span>
+    </a>
+  </div>
+</div>
+<div class="seccion-principal">
+  <ul class="list-cards">
+    <li
+      *ngFor="let item of _listado"
+      class="card-item table-row"
+      (click)="btnAceptar(item)"
+    >
+      <div class="letra1">
+        {{ item.Tipo }}
+      </div>
+
+      <div class="letra2">{{ item.idEconomico }} | {{ item.estatusTexto }}</div>
+    </li>
+  </ul>
+</div>
+<app-loading-circle *ngIf="_loading"></app-loading-circle>

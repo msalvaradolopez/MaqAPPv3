@@ -1,0 +1,351 @@
+<br />
+<div class="seccion-titulo">
+  <div class="menu-catalogos">
+    <h2 class="colorBlanco">Equipo : {{ _accionTxt }}</h2>
+    <div style="max-width: 350px; min-width: 100px">
+      <a class="boton-regresar color-verde" (click)="btnRegresar()">
+        <i class="fa-solid fa-house icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;Regresar</span>
+      </a>
+      <a class="boton-guardar color-verde" (click)="btnGuardar()">
+        <i class="fa-solid fa-floppy-disk icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;Guardar</span>
+      </a>
+    </div>
+  </div>
+</div>
+<br />
+<div class="seccion-principal">
+  <div class="capturaBackGround">
+    <form class="formsClass" autocomplete="off">
+      <label for="equipo" class="labelInput">Equipo</label>
+      <input
+        type="text"
+        id="equipo"
+        name="equipo"
+        class="inputReadOnlyClass"
+        [(ngModel)]="_ItemDet.idEconomicoTXT"
+        readonly="true"
+        placeholder="click para buscar..."
+        (click)="buscarEquipo()"
+      />
+
+      <label for="operador" class="labelInput">Operador</label>
+      <input
+        type="text"
+        id="operador"
+        name="operador"
+        class="inputReadOnlyClass"
+        [(ngModel)]="_ItemDet.idOperadorTXT"
+        readonly="true"
+        placeholder="click para buscar..."
+        (click)="buscarOperador()"
+      />
+
+      <label for="actividad" class="labelInput">Actividad</label>
+      <input
+        type="text"
+        id="actividad"
+        name="actividad"
+        class="inputClass"
+        [(ngModel)]="_ItemDet.actividad"
+      />
+
+      <label for="pto_exacto" class="labelInput">Punto exacto</label>
+      <input
+        type="text"
+        id="pto_exacto"
+        name="pto_exacto"
+        class="inputClass"
+        [(ngModel)]="_ItemDet.pto_exacto"
+      />
+    </form>
+  </div>
+  <div class="capturaBackGround" style="margin-top: 5px">
+    <form class="formsClass" autocomplete="off">
+      <label for="chequeo_medico" class="labelInput">Chequeo médico</label>
+      <select
+        id="chequeo_medico"
+        name="chequeo_medico"
+        class="inputClass"
+        style="height: 40px; font-size: medium; width: 93%"
+        [(ngModel)]="_ItemDet.chequeo_medico"
+      >
+        <option value="S">Si</option>
+        <option value="N">No</option>
+        <option value="X">N/A</option>
+      </select>
+
+      <label
+        *ngIf="_ItemDet.chequeo_medico != 'X'"
+        for="chequeo_medico_obs"
+        class="labelInput"
+        >Chequeo médico observación</label
+      >
+      <input
+        *ngIf="_ItemDet.chequeo_medico != 'X'"
+        type="text"
+        id="chequeo_medico_obs"
+        name="chequeo_medico_obs"
+        class="inputClass"
+        [(ngModel)]="_ItemDet.chequeo_medico_obs"
+      />
+
+      <label for="checklist_maq_equip" class="labelInput"
+        >Check List Maquinaria / Equipo</label
+      >
+      <select
+        id="checklist_maq_equip"
+        name="checklist_maq_equip"
+        class="inputClass"
+        style="height: 40px; font-size: medium; width: 93%"
+        [(ngModel)]="_ItemDet.checklist_maq_equip"
+      >
+        <option value="S">Si</option>
+        <option value="N">No</option>
+        <option value="X">N/A</option>
+      </select>
+
+      <label
+        *ngIf="_ItemDet.checklist_maq_equip != 'X'"
+        for="checklist_maq_equip_obs"
+        class="labelInput"
+        >Check List observación</label
+      >
+      <input
+        *ngIf="_ItemDet.checklist_maq_equip != 'X'"
+        type="text"
+        id="checklist_maq_equip_obs"
+        name="checklist_maq_equip_obs"
+        class="inputClass"
+        [(ngModel)]="_ItemDet.checklist_maq_equip_obs"
+      />
+
+      <label for="apr" class="labelInput">A P R</label>
+      <select
+        id="apr"
+        name="apr"
+        class="inputClass"
+        style="height: 40px; font-size: medium; width: 93%"
+        [(ngModel)]="_ItemDet.apr"
+      >
+        <option value="S">Si</option>
+        <option value="N">No</option>
+        <option value="X">N/A</option>
+      </select>
+
+      <label *ngIf="_ItemDet.apr != 'X'" for="apr_obs" class="labelInput"
+        >A P R observación</label
+      >
+      <input
+        *ngIf="_ItemDet.apr != 'X'"
+        type="text"
+        id="apr_obs"
+        name="apr_obs"
+        class="inputClass"
+        [(ngModel)]="_ItemDet.apr_obs"
+      />
+
+      <label for="permiso_instancia" class="labelInput"
+        >Permiso de instancia</label
+      >
+      <select
+        id="permiso_instancia"
+        name="permiso_instancia"
+        class="inputClass"
+        style="height: 40px; font-size: medium; width: 93%"
+        [(ngModel)]="_ItemDet.permiso_instancia"
+      >
+        <option value="S">Si</option>
+        <option value="N">No</option>
+        <option value="X">N/A</option>
+      </select>
+
+      <label
+        *ngIf="_ItemDet.permiso_instancia != 'X'"
+        for="permiso_instancia_obs"
+        class="labelInput"
+        >Permiso de instancia observación</label
+      >
+      <input
+        *ngIf="_ItemDet.permiso_instancia != 'X'"
+        type="text"
+        id="permiso_instancia_obs"
+        name="permiso_instancia_obs"
+        class="inputClass"
+        [(ngModel)]="_ItemDet.permiso_instancia_obs"
+      />
+
+      <label for="dc3" class="labelInput">DC3</label>
+      <select
+        id="dc3"
+        name="dc3"
+        class="inputClass"
+        style="height: 40px; font-size: medium; width: 93%"
+        [(ngModel)]="_ItemDet.dc3"
+      >
+        <option value="S">Si</option>
+        <option value="N">No</option>
+        <option value="X">N/A</option>
+      </select>
+
+      <label *ngIf="_ItemDet.dc3 != 'X'" for="dc3_obs" class="labelInput"
+        >DC3 observación</label
+      >
+      <input
+        *ngIf="_ItemDet.dc3 != 'X'"
+        type="text"
+        id="dc3_obs"
+        name="dc3_obs"
+        class="inputClass"
+        [(ngModel)]="_ItemDet.dc3_obs"
+      />
+
+      <label for="extintor" class="labelInput">Extintor</label>
+      <select
+        id="extintor"
+        name="extintor"
+        class="inputClass"
+        style="height: 40px; font-size: medium; width: 93%"
+        [(ngModel)]="_ItemDet.extintor"
+      >
+        <option value="S">Si</option>
+        <option value="N">No</option>
+        <option value="X">N/A</option>
+      </select>
+
+      <label
+        *ngIf="_ItemDet.extintor != 'X'"
+        for="extintor_obs"
+        class="labelInput"
+        >Extintor observación</label
+      >
+      <input
+        *ngIf="_ItemDet.extintor != 'X'"
+        type="text"
+        id="extintor_obs"
+        name="extintor_obs"
+        class="inputClass"
+        [(ngModel)]="_ItemDet.extintor_obs"
+      />
+
+      <label for="kit_antiderrames" class="labelInput">Kit antiderrames</label>
+      <select
+        id="kit_antiderrames"
+        name="kit_antiderrames"
+        class="inputClass"
+        style="height: 40px; font-size: medium; width: 93%"
+        [(ngModel)]="_ItemDet.kit_antiderrames"
+      >
+        <option value="S">Si</option>
+        <option value="N">No</option>
+        <option value="X">N/A</option>
+      </select>
+
+      <label
+        *ngIf="_ItemDet.kit_antiderrames != 'X'"
+        for="kit_antiderrames_obs"
+        class="labelInput"
+        >Platica 5 minutos observación</label
+      >
+      <input
+        *ngIf="_ItemDet.kit_antiderrames != 'X'"
+        type="text"
+        id="kit_antiderrames_obs"
+        name="kit_antiderrames_obs"
+        class="inputClass"
+        [(ngModel)]="_ItemDet.kit_antiderrames_obs"
+      />
+
+      <label for="platica_5min" class="labelInput">Platica 5 minutos</label>
+      <select
+        id="platica_5min"
+        name="platica_5min"
+        class="inputClass"
+        style="height: 40px; font-size: medium; width: 93%"
+        [(ngModel)]="_ItemDet.platica_5min"
+      >
+        <option value="S">Si</option>
+        <option value="N">No</option>
+        <option value="X">N/A</option>
+      </select>
+
+      <label
+        *ngIf="_ItemDet.platica_5min != 'X'"
+        for="platica_5min_obs"
+        class="labelInput"
+        >Platica 5 minutos observación</label
+      >
+      <input
+        *ngIf="_ItemDet.platica_5min != 'X'"
+        type="text"
+        id="platica_5min_obs"
+        name="platica_5min_obs"
+        class="inputClass"
+        [(ngModel)]="_ItemDet.platica_5min_obs"
+      />
+
+      <label for="epp" class="labelInput">EPP</label>
+      <select
+        id="epp"
+        name="epp"
+        class="inputClass"
+        style="height: 40px; font-size: medium; width: 93%"
+        [(ngModel)]="_ItemDet.epp"
+      >
+        <option value="S">Si</option>
+        <option value="N">No</option>
+        <option value="X">N/A</option>
+      </select>
+
+      <label *ngIf="_ItemDet.epp != 'X'" for="epp_obs" class="labelInput"
+        >EPP observación</label
+      >
+      <input
+        *ngIf="_ItemDet.epp != 'X'"
+        type="text"
+        id="epp_obs"
+        name="epp_obs"
+        class="inputClass"
+        [(ngModel)]="_ItemDet.epp_obs"
+      />
+
+      <label for="otro" class="labelInput">Otro</label>
+      <select
+        id="otro"
+        name="otro"
+        class="inputClass"
+        style="height: 40px; font-size: medium; width: 93%"
+        [(ngModel)]="_ItemDet.otro"
+      >
+        <option value="S">Si</option>
+        <option value="N">No</option>
+        <option value="X">N/A</option>
+      </select>
+
+      <label *ngIf="_ItemDet.otro != 'X'" for="otro_descrip" class="labelInput"
+        >Otro descripción</label
+      >
+      <input
+        *ngIf="_ItemDet.otro != 'X'"
+        type="text"
+        id="otro_descrip"
+        name="otro_descrip"
+        class="inputClass"
+        [(ngModel)]="_ItemDet.otro_descrip"
+      />
+
+      <label *ngIf="_ItemDet.otro != 'X'" for="otro_obs" class="labelInput"
+        >Otro observación</label
+      >
+      <input
+        *ngIf="_ItemDet.otro != 'X'"
+        type="text"
+        id="otro_obs"
+        name="otro_obs"
+        class="inputClass"
+        [(ngModel)]="_ItemDet.otro_obs"
+      />
+    </form>
+  </div>
+</div>

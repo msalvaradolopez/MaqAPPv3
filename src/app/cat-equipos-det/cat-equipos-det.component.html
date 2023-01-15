@@ -1,0 +1,66 @@
+<br />
+<div class="seccion-titulo">
+  <div class="menu-catalogos">
+    <h2 class="colorBlanco">Equipos</h2>
+    <div style="max-width: 350px; min-width: 100px">
+      <a class="boton-regresar color-verde" (click)="btnRegresar()">
+        <i class="fa-solid fa-house icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;Regresar</span>
+      </a>
+      <a class="boton-guardar color-verde" (click)="btnGuardar()">
+        <i class="fa-solid fa-floppy-disk icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;Guardar</span>
+      </a>
+    </div>
+  </div>
+</div>
+<br />
+<div class="seccion-principal">
+  <div class="capturaBackGround">
+    <form class="formsClass" autocomplete="off">
+      <label for="clave" class="labelInput">Clave del equipo</label>
+      <input
+        type="text"
+        id="clave"
+        name="clave"
+        [class]="_accion == 'N' ? 'inputClass' : 'inputReadOnlyClass'"
+        [(ngModel)]="_item.idEconomico"
+        [readonly]="_accion == 'N' ? false : true"
+      />
+      <label for="Nombre" class="labelInput">Nombre del equipo</label>
+      <input
+        type="text"
+        id="Nombre"
+        name="Nombre"
+        class="inputClass"
+        [(ngModel)]="_item.Tipo"
+      />
+
+      <label for="estatus" class="labelInput">Estatus</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="estatus"
+          #estatus
+          [(ngModel)]="_estatus"
+          name="estatus"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="estatus.checked"
+        >
+          Activo
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!estatus.checked"
+        >
+          Baja
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

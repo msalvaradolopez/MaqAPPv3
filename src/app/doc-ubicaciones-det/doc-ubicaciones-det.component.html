@@ -1,0 +1,118 @@
+<br />
+<div class="seccion-titulo">
+  <div class="menu-catalogos">
+    <h2 class="colorBlanco">Ubicación : {{ _accionTxt }}</h2>
+    <div style="max-width: 350px; min-width: 100px">
+      <a class="boton-regresar color-verde" (click)="btnRegresar()">
+        <i class="fa-solid fa-house icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;Regresar</span>
+      </a>
+      <a class="boton-guardar color-verde" (click)="btnGuardar()">
+        <i class="fa-solid fa-floppy-disk icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;Guardar</span>
+      </a>
+    </div>
+  </div>
+</div>
+<br />
+<div class="seccion-principal">
+  <div class="capturaBackGround">
+    <form class="formsClass" autocomplete="off">
+      <label for="equipo" class="labelInput">Equipo</label>
+      <input
+        type="text"
+        id="equipo"
+        name="equipo"
+        class="inputReadOnlyClass"
+        [(ngModel)]="_Item.idEconomicoTXT"
+        readonly="true"
+        placeholder="click para buscar..."
+        (click)="buscarEquipo()"
+      />
+
+      <label for="obra" class="labelInput">Obra</label>
+      <input
+        type="text"
+        id="obra"
+        name="obra"
+        class="inputReadOnlyClass"
+        [(ngModel)]="_Item.idObraTXT"
+        readonly="true"
+        placeholder="click para buscar..."
+        (click)="buscarObra()"
+      />
+
+      <label for="operador" class="labelInput">Operador</label>
+      <input
+        type="text"
+        id="operador"
+        name="operador"
+        class="inputReadOnlyClass"
+        [(ngModel)]="_Item.idOperadorTXT"
+        readonly="true"
+        placeholder="click para buscar..."
+        (click)="buscarOperador()"
+      />
+
+      <label for="Nombre" class="labelInput">Fecha</label>
+      <input
+        type="text"
+        class="inputReadOnlyClass"
+        [(ngModel)]="_fecha"
+        [value]="_fecha"
+        name="_fecha"
+        id="datepicker"
+        readonly="true"
+      />
+
+      <label for="odometro" class="labelInput">Odómetro</label>
+      <input
+        type="text"
+        id="comentarios"
+        name="odometro"
+        class="inputClass"
+        [(ngModel)]="_Item.odometro"
+      />
+
+      <label for="comentarios" class="labelInput">Comentarios</label>
+      <input
+        type="text"
+        id="comentarios"
+        name="comentarios"
+        class="inputClass"
+        [(ngModel)]="_Item.comentarios"
+      />
+    </form>
+  </div>
+  <br />
+  <div class="capturaBackGround">
+    <form class="formsClass" autocomplete="off">
+      <label for="sello" class="labelInput">Sello</label>
+      <input
+        type="text"
+        id="sello"
+        name="sello"
+        class="inputClass"
+        [(ngModel)]="_Item.sello"
+      />
+
+      <label for="litros" class="labelInput">Litros</label>
+      <input
+        type="text"
+        id="litros"
+        name="listros"
+        class="inputClass"
+        [(ngModel)]="_Item.litros"
+      />
+
+      <label for="horometro" class="labelInput">Horómetro</label>
+      <input
+        type="text"
+        id="horometro"
+        name="horometro"
+        class="inputClass"
+        [(ngModel)]="_Item.horometro"
+      />
+    </form>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+<br />
+<div class="seccion-titulo">
+  <div class="menu-catalogos">
+    <h2 class="colorBlanco">Filtrar</h2>
+    <div style="max-width: 350px; min-width: 100px">
+      <a class="boton-regresar" (click)="btnRegresar()">
+        <i class="fa-solid fa-house icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;Regresar</span>
+      </a>
+      <a class="boton-guardar" (click)="btnGuardar()">
+        
+        <i class="fa-solid fa-check icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;Aceptar</span>
+      </a>
+    </div>
+  </div>
+  <hr />
+</div>
+<br />
+<br />
+<div class="seccion-principal">
+  <div class="capturaBackGround">
+    <form class="formsClass" autocomplete="off">
+      <label for="clave" class="labelInput">Fecha de consulta</label>
+      <input
+        type="text"
+        class="inputReadOnlyClass"
+        [(ngModel)]="_fecha"
+        [value]="_fecha"
+        name="_fecha"
+        id="datepicker"
+        readonly="true"
+      />
+
+      <label for="equipo" class="labelInput">Equipo</label>
+      <input
+        type="text"
+        id="equipo"
+        name="equipo"
+        class="inputReadOnlyClass"
+        [(ngModel)]="_filtros.idEconomicoTXT"
+        readonly="true"
+        placeholder="click para buscar..."
+        (click)="buscarEquipo()"
+      />
+
+      <label for="obra" class="labelInput">Obra</label>
+      <input
+        type="text"
+        id="obra"
+        name="obra"
+        class="inputReadOnlyClass"
+        [(ngModel)]="_filtros.idObraTXT"
+        readonly="true"
+        placeholder="click para buscar..."
+        (click)="buscarObra()"
+      />
+
+      <label for="operador" class="labelInput">Operador</label>
+      <input
+        type="text"
+        id="operador"
+        name="operador"
+        class="inputReadOnlyClass"
+        [(ngModel)]="_filtros.idOperadorTXT"
+        readonly="true"
+        placeholder="click para buscar..."
+        (click)="buscarOperador()"
+      />
+    </form>
+  </div>
+</div>

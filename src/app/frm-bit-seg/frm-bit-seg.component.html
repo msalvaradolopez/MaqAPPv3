@@ -1,0 +1,269 @@
+<br />
+<div class="seccion-titulo">
+  <div class="menu-catalogos">
+    <h2 class="colorBlanco">Formato Bit Seguridad</h2>
+    <div style="max-width: 350px; min-width: 100px">
+      <a
+        class="boton-regresar color-verde icono-posicion-tres"
+        (click)="btnRegresar()"
+      >
+        <i class="fa-solid fa-house icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;Regresar</span>
+      </a>
+      <a
+        class="boton-guardar color-verde icono-posicion-dos"
+        (click)="btnGererarPDF()"
+      >
+        <i class="fa-solid fa-floppy-disk icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;PDF</span>
+      </a>
+    </div>
+  </div>
+</div>
+<br />
+<div #idFormato class="seccion-principal">
+  <div class="capturaBackGround">
+    <form class="formsClass" autocomplete="off">
+      <label for="planta" class="labelInput">Planta</label>
+      <input
+        type="text"
+        id="obra"
+        name="planta"
+        class="inputReadOnlyClass"
+        [(ngModel)]="_Item.idObraTXT"
+        readonly="true"
+        placeholder="click para buscar..."
+      />
+
+      <label for="area" class="labelInput">Area</label>
+      <input
+        type="text"
+        id="comentarios"
+        name="area"
+        class="inputClass"
+        [(ngModel)]="_Item.area"
+      />
+
+      <label for="equipo" class="labelInput">Supervisor</label>
+      <input
+        type="text"
+        id="equipo"
+        name="equipo"
+        class="inputReadOnlyClass"
+        [(ngModel)]="_Item.idSupervisorTXT"
+        readonly="true"
+        placeholder="click para buscar..."
+      />
+
+      <label for="_fecha" class="labelInput">Fecha</label>
+      <input
+        type="text"
+        class="inputReadOnlyClass"
+        [(ngModel)]="_fecha"
+        [value]="_fecha"
+        name="_fecha"
+        id="datepicker"
+        readonly="true"
+      />
+
+      <label for="horaInicio" class="labelInput">Hora Inicio</label>
+      <input
+        type="text"
+        id="horaInicio"
+        name="horaInicio"
+        class="inputReadOnlyClass"
+        [(ngModel)]="_Item.horaInicio"
+        readonly="true"
+        placeholder="click para elegir hora / minutos..."
+        (click)="busHorasMinutos('Inicio')"
+      />
+
+      <label for="horaTermino" class="labelInput">Hora Termino</label>
+      <input
+        type="text"
+        id="horaTermino"
+        name="horaTermino"
+        class="inputReadOnlyClass"
+        [(ngModel)]="_Item.horaTermino"
+        readonly="true"
+        placeholder="click para elegir hora / minutos..."
+        (click)="busHorasMinutos('Termino')"
+      />
+    </form>
+  </div>
+  <div class="seccion-principal">
+    <ul class="list-cards">
+      <li
+        *ngFor="let itemEquipo of _Item.ListadoBitSeg"
+        style="margin-top: 5px"
+        class="card-item table-row"
+        (click)="btnEditar(itemEquipo)"
+      >
+        <div class="letra1 borde-abajo" style="width: 100%">
+          <div>{{ itemEquipo.idEconomico }} | {{ itemEquipo.equipoNom }}</div>
+          <div>{{ itemEquipo.idOperador }} | {{ itemEquipo.operadorNom }}</div>
+          <div class="letra2 justifica-items borde-abajo" style="width: 100%">
+            <p>Actividad</p>
+            <p class="letra2 margen-arriba-abajo">{{ itemEquipo.actividad }}</p>
+          </div>
+          <div class="letra2 justifica-items borde-abajo">
+            <p>Punto Exacto</p>
+            <p class="letra2 margen-arriba-abajo">
+              {{ itemEquipo.pto_exacto }}
+            </p>
+          </div>
+          <div class="letra2 justifica-items borde-abajo">
+            <p>Chequeo médico</p>
+            <p class="letra2 margen-arriba-abajo">
+              {{ valoresRadioButtons(itemEquipo.chequeo_medico) }}
+            </p>
+          </div>
+
+          <div
+            *ngIf="itemEquipo.chequeo_medico != 'X'"
+            class="letra2 borde-abajo"
+          >
+            <p class="letra2 margen-arriba-abajo" style="margin-left: 5px">
+              {{ itemEquipo.chequeo_medico_obs }}
+            </p>
+          </div>
+
+          <div class="letra2 justifica-items borde-abajo">
+            <p>Check list Equipo</p>
+            <p class="letra2 margen-arriba-abajo">
+              {{ valoresRadioButtons(itemEquipo.checklist_maq_equip) }}
+            </p>
+          </div>
+
+          <div
+            *ngIf="itemEquipo.checklist_maq_equip != 'X'"
+            class="letra2 borde-abajo"
+          >
+            <p class="letra2 margen-arriba-abajo" style="margin-left: 5px">
+              {{ itemEquipo.checklist_maq_equip_obs }}
+            </p>
+          </div>
+
+          <div class="letra2 justifica-items borde-abajo">
+            <p>A P R</p>
+            <p class="letra2 margen-arriba-abajo">
+              {{ valoresRadioButtons(itemEquipo.apr) }}
+            </p>
+          </div>
+
+          <div *ngIf="itemEquipo.apr != 'X'" class="letra2 borde-abajo">
+            <p class="letra2 margen-arriba-abajo" style="margin-left: 5px">
+              {{ itemEquipo.apr_obs }}
+            </p>
+          </div>
+
+          <div class="letra2 justifica-items borde-abajo">
+            <p>Permiso de instancia</p>
+            <p class="letra2 margen-arriba-abajo">
+              {{ valoresRadioButtons(itemEquipo.permiso_instancia) }}
+            </p>
+          </div>
+
+          <div
+            *ngIf="itemEquipo.permiso_instancia != 'X'"
+            class="letra2 borde-abajo"
+          >
+            <p class="letra2 margen-arriba-abajo" style="margin-left: 5px">
+              {{ itemEquipo.permiso_instancia_obs }}
+            </p>
+          </div>
+
+          <div class="letra2 justifica-items borde-abajo">
+            <p>DC3</p>
+            <p class="letra2 margen-arriba-abajo">
+              {{ valoresRadioButtons(itemEquipo.dc3) }}
+            </p>
+          </div>
+
+          <div *ngIf="itemEquipo.dc3 != 'X'" class="letra2 borde-abajo">
+            <p class="letra2 margen-arriba-abajo" style="margin-left: 5px">
+              {{ itemEquipo.dc3_obs }}
+            </p>
+          </div>
+
+          <div class="letra2 justifica-items borde-abajo">
+            <p>Extintor</p>
+            <p class="letra2 margen-arriba-abajo">
+              {{ valoresRadioButtons(itemEquipo.extintor) }}
+            </p>
+          </div>
+
+          <div *ngIf="itemEquipo.extintor != 'X'" class="letra2 borde-abajo">
+            <p class="letra2 margen-arriba-abajo" style="margin-left: 5px">
+              {{ itemEquipo.extintor_obs }}
+            </p>
+          </div>
+
+          <div class="letra2 justifica-items borde-abajo">
+            <p>Kit antiderrames</p>
+            <p class="letra2 margen-arriba-abajo">
+              {{ valoresRadioButtons(itemEquipo.kit_antiderrames) }}
+            </p>
+          </div>
+
+          <div
+            *ngIf="itemEquipo.kit_antiderrames != 'X'"
+            class="letra2 borde-abajo"
+          >
+            <p class="letra2 margen-arriba-abajo" style="margin-left: 5px">
+              {{ itemEquipo.kit_antiderrames_obs }}
+            </p>
+          </div>
+
+          <div class="letra2 justifica-items borde-abajo">
+            <p>Platica 5 minutos</p>
+            <p class="letra2 margen-arriba-abajo">
+              {{ valoresRadioButtons(itemEquipo.platica_5min) }}
+            </p>
+          </div>
+
+          <div
+            *ngIf="itemEquipo.platica_5min != 'X'"
+            class="letra2 borde-abajo"
+          >
+            <p class="letra2 margen-arriba-abajo" style="margin-left: 5px">
+              {{ itemEquipo.platica_5min_obs }}
+            </p>
+          </div>
+
+          <div class="letra2 justifica-items borde-abajo">
+            <p>EPP</p>
+            <p class="letra2 margen-arriba-abajo">
+              {{ valoresRadioButtons(itemEquipo.epp) }}
+            </p>
+          </div>
+
+          <div *ngIf="itemEquipo.epp != 'X'" class="letra2 borde-abajo">
+            <p class="letra2 margen-arriba-abajo" style="margin-left: 5px">
+              {{ itemEquipo.epp_obs }}
+            </p>
+          </div>
+
+          <div class="letra2 justifica-items borde-abajo">
+            <p>Otro</p>
+            <p class="letra2 margen-arriba-abajo">
+              {{ valoresRadioButtons(itemEquipo.otro) }}
+            </p>
+          </div>
+
+          <div *ngIf="itemEquipo.otro != 'X'" class="letra2 borde-abajo">
+            <p class="letra2 margen-arriba-abajo" style="margin-left: 5px">
+              {{ itemEquipo.otro_descrip }}
+            </p>
+          </div>
+
+          <div *ngIf="itemEquipo.otro != 'X'" class="letra2 borde-abajo">
+            <p class="letra2 margen-arriba-abajo" style="margin-left: 5px">
+              {{ itemEquipo.otro_obs }}
+            </p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
