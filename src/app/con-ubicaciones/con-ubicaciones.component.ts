@@ -31,7 +31,7 @@ export class ConUbicacionesComponent implements OnInit {
     idEconomicoTXT: '',
     idObraTXT: '',
     idOperadorTXT: '',
-    idUsuario: '',
+    idUsuario: '0',
     pantalla: 'conUbicaciones',
   };
   _subBuscar!: Subscription;
@@ -142,7 +142,7 @@ export class ConUbicacionesComponent implements OnInit {
       idEconomicoTXT: '',
       idObraTXT: '',
       idOperadorTXT: '',
-      idUsuario: '',
+      idUsuario: '0',
       pantalla: 'conUbicaciones',
     };
 
