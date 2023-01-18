@@ -50,9 +50,24 @@ export class DocInsPecComponent implements OnInit {
     );
   }
 
-  btnAgregar() {}
+  btnAgregar() {
+    sessionStorage.setItem('List', JSON.stringify(this._List));
+    sessionStorage.removeItem('Item');
+    this._router.navigate(['/docInsPecDet']);
+  }
 
-  btnEditar(item: IInsPec) {}
+  btnEditar(item: IInsPec) {
+    sessionStorage.setItem('List', JSON.stringify(this._List));
+    sessionStorage.setItem('Item', JSON.stringify(item));
+    this._router.navigate(['/docInsPecDet']);
+  }
+
+  btnFiltros() {
+    this.setFiltros();
+    sessionStorage.setItem('Filtros', JSON.stringify(this._Filtros));
+    sessionStorage.removeItem('busResp');
+    this._router.navigate(['/FiltrosInsPec']);
+  }
 
   setFiltros() {
     this._Filtros = {
@@ -68,6 +83,10 @@ export class DocInsPecComponent implements OnInit {
       mes: this._fechaAlta.getMonth() + 1,
       anno: this._fechaAlta.getFullYear(),
       dia: 0,
+      idSupervisorTXT: '',
+      idEconomicoTXT: '',
+      idOperadorTXT: '',
+      pantalla: 'docInsPec',
     };
   }
 }

@@ -11,4 +11,9 @@ export interface IFiltrosInsPec {
   mes: number;
   anno: number;
   dia: number;
+
+  idSupervisorTXT: string;
+  idEconomicoTXT: string;
+  idOperadorTXT: string;
+  pantalla: string;
 }

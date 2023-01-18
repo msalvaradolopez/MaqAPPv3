@@ -251,7 +251,6 @@ td {
   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
 }
 
-
 .table-row {
   transition: transform 0.2s;
 }
@@ -764,17 +763,16 @@ td {
   text-overflow: ellipsis;
 }
 
-
 /* GENERAR  NUEVO CSS */
 .columns-2 {
   display: grid;
-  grid-template-columns: 1fr 1fr; 
+  grid-template-columns: 1fr 1fr;
   gap: 5px;
 }
 
 .columns-1 {
   display: grid;
-  grid-template-columns: 1fr; 
+  grid-template-columns: 1fr;
   gap: 5px;
 }
 
@@ -826,14 +824,14 @@ td {
 }
 
 .table-standard {
-  border-radius:3px;
+  border-radius: 3px;
   border-collapse: collapse;
   margin: auto;
-  padding:5px;
+  padding: 5px;
   width: 100%;
   background: transparent;
-  color:#D5DDE5;;
-  White-space: nowrap;
+  color: #d5dde5;
+  white-space: nowrap;
 }
 
 .rectangle-standard {
@@ -852,4 +850,17 @@ td {
 .vertical-scroll {
   overflow-x: scroll;
   overflow-y: hidden;
+}
+
+.select {
+  width: 90%;
+  border: 1px solid #ccc;
+  outline: 0;
+  border-radius: 15px;
+  height: 40px;
+  margin: auto;
+  color: black;
+  padding: 5px;
+  background-color: white;
+  font-size: medium;
 }

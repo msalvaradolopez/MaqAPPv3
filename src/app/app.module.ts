@@ -37,6 +37,7 @@ import { ConBitSegComponent } from './con-bit-seg/con-bit-seg.component';
 import { ConUbicacionesComponent } from './con-ubicaciones/con-ubicaciones.component';
 import { DocInsPecDetComponent } from './doc-ins-pec-det/doc-ins-pec-det.component';
 import { DocInsPecComponent } from './doc-ins-pec/doc-ins-pec.component';
+import { FiltrosInsPecComponent } from './filtros-ins-pec/filtros-ins-pec.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { DocInsPecComponent } from './doc-ins-pec/doc-ins-pec.component';
     ConUbicacionesComponent,
     DocInsPecDetComponent,
     DocInsPecComponent,
+    FiltrosInsPecComponent,
   ],
   imports: [
     BrowserModule,

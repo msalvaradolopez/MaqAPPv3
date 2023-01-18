@@ -1,0 +1,82 @@
+<br />
+<div class="seccion-titulo">
+  <div class="menu-catalogos">
+    <h2 class="colorBlanco">Filtrar</h2>
+    <div style="max-width: 350px; min-width: 100px">
+      <a class="boton-regresar" (click)="btnRegresar()">
+        <i class="fa-solid fa-house icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;Regresar</span>
+      </a>
+      <a class="boton-guardar" (click)="btnGuardar()">
+        <i class="fa-solid fa-check icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;Aceptar</span>
+      </a>
+    </div>
+  </div>
+  <hr />
+</div>
+<br />
+<br />
+<div class="seccion-principal">
+  <div class="capturaBackGround">
+    <form class="formsClass" autocomplete="off">
+      <label for="anno" class="labelInput">Año</label>
+      <select id="anno" name="anno" class="select" [(ngModel)]="_filtros.anno">
+        <option *ngFor="let item of _ListAnnos" [value]="item">
+          {{ item }}
+        </option>
+      </select>
+
+      <label for="mes" class="labelInput">Mes</label>
+      <select id="mes" name="mes" class="select" [(ngModel)]="_filtros.mes">
+        <option *ngFor="let item of _ListMeses" [value]="item.idMes">
+          {{ item.nomMes }}
+        </option>
+      </select>
+
+      <label for="dia" class="labelInput">Dia</label>
+      <select id="dia" name="dia" class="select" [(ngModel)]="_filtros.dia">
+        <option value="0">Todos</option>
+        <option *ngFor="let item of _ListDias" [value]="item">
+          {{ item }}
+        </option>
+      </select>
+
+      <label for="idSupervisor" class="labelInput">Supervisor</label>
+      <input
+        type="text"
+        id="idSupervisor"
+        name="idSupervisor"
+        class="inputReadOnlyClass"
+        [(ngModel)]="_filtros.idSupervisorTXT"
+        readonly="true"
+        placeholder="click para buscar..."
+        (click)="buscarSupervisor()"
+      />
+
+      <label for="idOperador" class="labelInput">Operador</label>
+      <input
+        type="text"
+        id="idOperador"
+        name="idOperador"
+        class="inputReadOnlyClass"
+        [(ngModel)]="_filtros.idOperadorTXT"
+        readonly="true"
+        placeholder="click para buscar..."
+        (click)="buscarOperador()"
+      />
+
+      <label for="equipo" class="labelInput">Equipo</label>
+      <input
+        type="text"
+        id="equipo"
+        name="equipo"
+        class="inputReadOnlyClass"
+        [(ngModel)]="_filtros.idEconomicoTXT"
+        readonly="true"
+        placeholder="click para buscar..."
+        (click)="buscarEquipo()"
+      />
+    </form>
+  </div>
+</div>

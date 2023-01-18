@@ -21,6 +21,7 @@ import { DocInsPecDetComponent } from './doc-ins-pec-det/doc-ins-pec-det.compone
 import { DocInsPecComponent } from './doc-ins-pec/doc-ins-pec.component';
 import { DocUbicacionesDetComponent } from './doc-ubicaciones-det/doc-ubicaciones-det.component';
 import { DocUbicacionesComponent } from './doc-ubicaciones/doc-ubicaciones.component';
+import { FiltrosInsPecComponent } from './filtros-ins-pec/filtros-ins-pec.component';
 import { FiltrosComponent } from './filtros/filtros.component';
 import { FrmBitSegComponent } from './frm-bit-seg/frm-bit-seg.component';
 import { LoginComponent } from './login/login.component';
@@ -52,6 +53,7 @@ const routes: Routes = [
   { path: 'conUbicaciones', component: ConUbicacionesComponent },
   { path: 'docInsPec', component: DocInsPecComponent },
   { path: 'docInsPecDet', component: DocInsPecDetComponent },
+  { path: 'FiltrosInsPec', component: FiltrosInsPecComponent },
 ];
 
 @NgModule({
