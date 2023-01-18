@@ -35,6 +35,8 @@ import { DocBitSegDetEquipoComponent } from './doc-bit-seg-det-equipo/doc-bit-se
 import { FrmBitSegComponent } from './frm-bit-seg/frm-bit-seg.component';
 import { ConBitSegComponent } from './con-bit-seg/con-bit-seg.component';
 import { ConUbicacionesComponent } from './con-ubicaciones/con-ubicaciones.component';
+import { DocInsPecDetComponent } from './doc-ins-pec-det/doc-ins-pec-det.component';
+import { DocInsPecComponent } from './doc-ins-pec/doc-ins-pec.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +67,8 @@ import { ConUbicacionesComponent } from './con-ubicaciones/con-ubicaciones.compo
     FrmBitSegComponent,
     ConBitSegComponent,
     ConUbicacionesComponent,
+    DocInsPecDetComponent,
+    DocInsPecComponent,
   ],
   imports: [
     BrowserModule,

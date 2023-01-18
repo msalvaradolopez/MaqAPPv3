@@ -1,0 +1,30 @@
+<br />
+<div class="seccion-titulo" style="margin-bottom: 5px">
+  <div class="menu-catalogos">
+    <h2 class="colorBlanco">Inspreccion</h2>
+    <a class="boton-acciones" (click)="btnAgregar()">
+      <i class="fa-solid fa-circle-plus icono-xlg icono-plus-circle"></i>
+
+      <i class="fa-solid fa-plus icono-xlg centrar-icono icono-plus"></i>
+      <span class="textoBtn"> &thinsp;Nuevo</span>
+    </a>
+  </div>
+</div>
+<div class="seccion-principal">
+  <ul class="list-cards">
+    <li
+      *ngFor="let item of _List"
+      class="card-item table-row"
+      (click)="btnEditar(item)"
+    >
+      <div class="letra1">
+        {{ item.nomEquipo }}
+      </div>
+
+      <div class="letra2">
+        {{ item.nomOperador }} | {{ item.nomSupervisor }}
+      </div>
+    </li>
+  </ul>
+</div>
+<app-loading-circle *ngIf="_loading"></app-loading-circle>

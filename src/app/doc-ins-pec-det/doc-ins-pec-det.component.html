@@ -1,0 +1,229 @@
+<br />
+<div class="seccion-titulo">
+  <div class="menu-catalogos">
+    <h2 class="colorBlanco">Inspecciòn : Nuevo</h2>
+    <div style="max-width: 350px; min-width: 100px">
+      <a class="boton-regresar color-verde" (click)="btnRegresar()">
+        <i class="fa-solid fa-house icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;Regresar</span>
+      </a>
+      <a class="boton-guardar color-verde" (click)="btnGuardar()">
+        <i class="fa-solid fa-floppy-disk icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;Guardar</span>
+      </a>
+    </div>
+  </div>
+</div>
+<br />
+<div class="seccion-principal">
+  <div class="capturaBackGround">
+    <form class="formsClass" autocomplete="off">
+      <label for="equipo" class="labelInput">Fecha</label>
+      <input
+        type="text"
+        id="equipo"
+        name="equipo"
+        class="inputReadOnlyClass"
+        readonly="true"
+        placeholder="click para buscar..."
+      />
+
+      <label for="obra" class="labelInput">Supervisor</label>
+      <input
+        type="text"
+        id="obra"
+        name="obra"
+        class="inputReadOnlyClass"
+        readonly="true"
+        placeholder="click para buscar..."
+      />
+
+      <label for="obra" class="labelInput">Unidad</label>
+      <input
+        type="text"
+        id="obra"
+        name="obra"
+        class="inputReadOnlyClass"
+        readonly="true"
+        placeholder="click para buscar..."
+      />
+
+      <label for="operador" class="labelInput">Operador</label>
+      <input
+        type="text"
+        id="operador"
+        name="operador"
+        class="inputReadOnlyClass"
+        readonly="true"
+        placeholder="click para buscar..."
+      />
+
+      <label for="Nombre" class="labelInput">Tuno</label>
+      <input
+        type="text"
+        class="inputReadOnlyClass"
+        name="_fecha"
+        id="datepicker"
+        readonly="true"
+      />
+
+      <label for="odometro" class="labelInput">Horometro</label>
+      <input type="text" id="comentarios" name="odometro" class="inputClass" />
+
+      <label for="comentarios" class="labelInput">Responsable Mantto</label>
+      <input
+        type="text"
+        id="comentarios"
+        name="comentarios"
+        class="inputClass"
+      />
+      <label for="comentarios" class="labelInput">Comentarios</label>
+      <input
+        type="text"
+        id="comentarios"
+        name="comentarios"
+        class="inputClass"
+      />
+    </form>
+  </div>
+  <br />
+  <div class="capturaBackGround">
+    <form class="formsClass" autocomplete="off">
+      <label for="frenos" class="labelInput">Frenos</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="frenos"
+          #frenos
+          [(ngModel)]="_frenos"
+          name="frenos"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="frenos.checked"
+        >
+          OK
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!frenos.checked"
+        >
+          FALLA
+        </div>
+      </div>
+
+      <label for="alarma" class="labelInput">Alarma/Rev</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="alarma"
+          #alarma
+          [(ngModel)]="_alarma"
+          name="alarma"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="alarma.checked"
+        >
+          OK
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!alarma.checked"
+        >
+          FALLA
+        </div>
+      </div>
+
+      <label *ngIf="!alarma.checked" for="alarma_rev_obs" class="labelInput"
+        >Alarma/Rev Observaciones</label
+      >
+      <input
+        *ngIf="!alarma.checked"
+        type="text"
+        id="alarma_rev_obs"
+        name="alarma_rev_obs"
+        class="inputClass"
+      />
+
+      <label for="aceite" class="labelInput">Nivel Aceite</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="aceite"
+          #aceite
+          [(ngModel)]="_aceite"
+          name="aceite"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="aceite.checked"
+        >
+          OK
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!aceite.checked"
+        >
+          FALLA
+        </div>
+      </div>
+
+      <label for="motor" class="labelInput">Motor</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="motor"
+          #motor
+          [(ngModel)]="_motor"
+          name="motor"
+          class="toggle"
+        />
+        <div class="labelInput" style="margin-left: 20px" *ngIf="motor.checked">
+          OK
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!motor.checked"
+        >
+          FALLA
+        </div>
+      </div>
+      <label for="transmision" class="labelInput">Transmision</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="transmision"
+          #transmision
+          [(ngModel)]="_transmision"
+          name="transmision"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="transmision.checked"
+        >
+          OK
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!transmision.checked"
+        >
+          FALLA
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

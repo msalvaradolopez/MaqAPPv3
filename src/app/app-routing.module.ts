@@ -17,6 +17,8 @@ import { ConUbicacionesComponent } from './con-ubicaciones/con-ubicaciones.compo
 import { DocBitSegDetEquipoComponent } from './doc-bit-seg-det-equipo/doc-bit-seg-det-equipo.component';
 import { DocBitSegDetComponent } from './doc-bit-seg-det/doc-bit-seg-det.component';
 import { DocBitSegComponent } from './doc-bit-seg/doc-bit-seg.component';
+import { DocInsPecDetComponent } from './doc-ins-pec-det/doc-ins-pec-det.component';
+import { DocInsPecComponent } from './doc-ins-pec/doc-ins-pec.component';
 import { DocUbicacionesDetComponent } from './doc-ubicaciones-det/doc-ubicaciones-det.component';
 import { DocUbicacionesComponent } from './doc-ubicaciones/doc-ubicaciones.component';
 import { FiltrosComponent } from './filtros/filtros.component';
@@ -48,6 +50,8 @@ const routes: Routes = [
   { path: 'frmBitSeg', component: FrmBitSegComponent },
   { path: 'conBitSeg', component: ConBitSegComponent },
   { path: 'conUbicaciones', component: ConUbicacionesComponent },
+  { path: 'docInsPec', component: DocInsPecComponent },
+  { path: 'docInsPecDet', component: DocInsPecDetComponent },
 ];
 
 @NgModule({
