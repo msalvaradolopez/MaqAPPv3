@@ -1,7 +1,7 @@
 <br />
 <div class="seccion-titulo">
   <div class="menu-catalogos">
-    <h2 class="colorBlanco">Inspección : Nuevo</h2>
+    <h2 class="colorBlanco">Inspección : {{ _accionTxt }}</h2>
     <div style="max-width: 350px; min-width: 100px">
       <a class="boton-regresar color-verde" (click)="btnRegresar()">
         <i class="fa-solid fa-house icono-xlg centrar-icono"></i>
@@ -18,34 +18,39 @@
 <div class="seccion-principal">
   <div class="capturaBackGround">
     <form class="formsClass" autocomplete="off">
-      <label for="equipo" class="labelInput">Fecha</label>
+      <label for="_fecha" class="labelInput">Fecha</label>
       <input
         type="text"
-        id="equipo"
-        name="equipo"
         class="inputReadOnlyClass"
+        [(ngModel)]="_fecha"
+        [value]="_fecha"
+        name="_fecha"
+        id="datepicker"
         readonly="true"
-        placeholder="click para buscar..."
       />
 
-      <label for="obra" class="labelInput">Supervisor</label>
+      <label for="supervisor" class="labelInput">Supervisor</label>
       <input
         type="text"
-        id="obra"
-        name="obra"
+        id="supervisor"
+        name="supervisor"
         class="inputReadOnlyClass"
         readonly="true"
         placeholder="click para buscar..."
+        [(ngModel)]="_Item.nomSupervisor"
+        (click)="buscarSupervisor()"
       />
 
-      <label for="obra" class="labelInput">Unidad</label>
+      <label for="unidad" class="labelInput">Unidad</label>
       <input
         type="text"
-        id="obra"
-        name="obra"
+        id="unidad"
+        name="unidad"
         class="inputReadOnlyClass"
         readonly="true"
         placeholder="click para buscar..."
+        [(ngModel)]="_Item.nomEquipo"
+        (click)="buscarEquipo()"
       />
 
       <label for="operador" class="labelInput">Operador</label>
@@ -56,33 +61,40 @@
         class="inputReadOnlyClass"
         readonly="true"
         placeholder="click para buscar..."
+        [(ngModel)]="_Item.nomOperador"
+        (click)="buscarOperador()"
       />
 
-      <label for="Nombre" class="labelInput">Tuno</label>
+      <label for="turno" class="labelInput">Truno</label>
+      <select id="turno" name="turno" class="select" [(ngModel)]="_Item.turno">
+        <option value="M">Matutino</option>
+        <option value="V">Vespertino</option>
+        <option value="N">Nocturno</option>
+      </select>
+
+      <label for="horometro" class="labelInput">Horometro</label>
       <input
-        type="text"
-        class="inputReadOnlyClass"
-        name="_fecha"
-        id="datepicker"
+        type="number"
+        id="horometro"
+        name="horometro"
+        class="inputClass"
         readonly="true"
+        placeholder="click para buscar..."
+        [(ngModel)]="_Item.horometro"
       />
 
-      <label for="odometro" class="labelInput">Horometro</label>
-      <input type="text" id="comentarios" name="odometro" class="inputClass" />
-
-      <label for="comentarios" class="labelInput">Responsable Mantto</label>
+      <label for="idResponsableMtto" class="labelInput"
+        >Responsable Mantto</label
+      >
       <input
         type="text"
-        id="comentarios"
-        name="comentarios"
-        class="inputClass"
-      />
-      <label for="comentarios" class="labelInput">Comentarios</label>
-      <input
-        type="text"
-        id="comentarios"
-        name="comentarios"
-        class="inputClass"
+        id="idResponsableMtto"
+        name="idResponsableMtto"
+        class="inputReadOnlyClass"
+        readonly="true"
+        placeholder="click para buscar..."
+        [(ngModel)]="_Item.nomResponsableMtto"
+        (click)="buscarMantenimiento()"
       />
     </form>
   </div>
@@ -115,13 +127,25 @@
         </div>
       </div>
 
+      <label *ngIf="!frenos.checked" for="frenos_obs" class="labelInput"
+        >Frenos Observaciones</label
+      >
+      <input
+        *ngIf="!frenos.checked"
+        type="text"
+        id="frenos_obs"
+        name="frenos_obs"
+        class="inputClass"
+        [(ngModel)]="_Item.frenos_obs"
+      />
+
       <label for="alarma" class="labelInput">Alarma/Rev</label>
       <div class="texto-linea">
         <input
           type="checkbox"
           id="alarma"
           #alarma
-          [(ngModel)]="_alarma"
+          [(ngModel)]="_alarma_rev"
           name="alarma"
           class="toggle"
         />
@@ -150,6 +174,7 @@
         id="alarma_rev_obs"
         name="alarma_rev_obs"
         class="inputClass"
+        [(ngModel)]="_Item.alarma_rev_obs"
       />
 
       <label for="aceite" class="labelInput">Nivel Aceite</label>
@@ -158,7 +183,7 @@
           type="checkbox"
           id="aceite"
           #aceite
-          [(ngModel)]="_aceite"
+          [(ngModel)]="_nivel_aceite"
           name="aceite"
           class="toggle"
         />
@@ -177,6 +202,18 @@
           FALLA
         </div>
       </div>
+
+      <label *ngIf="!aceite.checked" for="nivel_aceite_obs" class="labelInput"
+        >Nivel Aceite Observaciones</label
+      >
+      <input
+        *ngIf="!aceite.checked"
+        type="text"
+        id="nivel_aceite_obs"
+        name="nivel_aceite_obs"
+        class="inputClass"
+        [(ngModel)]="_Item.nivel_aceite_obs"
+      />
 
       <label for="motor" class="labelInput">Motor</label>
       <div class="texto-linea">
@@ -199,6 +236,19 @@
           FALLA
         </div>
       </div>
+
+      <label *ngIf="!motor.checked" for="motor_obs" class="labelInput"
+        >Motor Observaciones</label
+      >
+      <input
+        *ngIf="!motor.checked"
+        type="text"
+        id="motor_obs"
+        name="motor_obs"
+        class="inputClass"
+        [(ngModel)]="_Item.motor_obs"
+      />
+
       <label for="transmision" class="labelInput">Transmision</label>
       <div class="texto-linea">
         <input
@@ -224,6 +274,454 @@
           FALLA
         </div>
       </div>
+
+      <label
+        *ngIf="!transmision.checked"
+        for="transmision_obs"
+        class="labelInput"
+        >Transmision Observaciones</label
+      >
+      <input
+        *ngIf="!transmision.checked"
+        type="text"
+        id="transmision_obs"
+        name="transmision_obs"
+        class="inputClass"
+        [(ngModel)]="_Item.transmision_obs"
+      />
+
+      <label for="fugas_aceite" class="labelInput">Fugas de Aceite</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="fugas_aceite"
+          #fugas_aceite
+          [(ngModel)]="_fugas_aceite"
+          name="fugas_aceite"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="fugas_aceite.checked"
+        >
+          OK
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!fugas_aceite.checked"
+        >
+          FALLA
+        </div>
+      </div>
+
+      <label
+        *ngIf="!fugas_aceite.checked"
+        for="fugas_aceite_obs"
+        class="labelInput"
+        >Fugas de Aceite Observaciones</label
+      >
+      <input
+        *ngIf="!fugas_aceite.checked"
+        type="text"
+        id="fugas_aceite_obs"
+        name="fugas_aceite_obs"
+        class="inputClass"
+        [(ngModel)]="_Item.fugas_aceite_obs"
+      />
+
+      <label for="nivel_agua" class="labelInput">Nivel Agua</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="nivel_agua"
+          #nivel_agua
+          [(ngModel)]="_nivel_agua"
+          name="nivel_agua"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="nivel_agua.checked"
+        >
+          OK
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!nivel_agua.checked"
+        >
+          FALLA
+        </div>
+      </div>
+
+      <label *ngIf="!nivel_agua.checked" for="nivel_agua_obs" class="labelInput"
+        >Nivel de Agua Observaciones</label
+      >
+      <input
+        *ngIf="!nivel_agua.checked"
+        type="text"
+        id="nivel_agua_obs"
+        name="nivel_agua_obs"
+        class="inputClass"
+        [(ngModel)]="_Item.nivel_agua_obs"
+      />
+
+      <label for="extinguidor" class="labelInput">Extinguidor</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="extinguidor"
+          #extinguidor
+          [(ngModel)]="_extinguidor"
+          name="extinguidor"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="extinguidor.checked"
+        >
+          OK
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!extinguidor.checked"
+        >
+          FALLA
+        </div>
+      </div>
+
+      <label
+        *ngIf="!extinguidor.checked"
+        for="extinguidor_obs"
+        class="labelInput"
+        >Extinguidor Observaciones</label
+      >
+      <input
+        *ngIf="!extinguidor.checked"
+        type="text"
+        id="extinguidor_obs"
+        name="extinguidor_obs"
+        class="inputClass"
+        [(ngModel)]="_Item.extinguidor_obs"
+      />
+
+      <label for="luces" class="labelInput">Luces</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="luces"
+          #luces
+          [(ngModel)]="_luces"
+          name="luces"
+          class="toggle"
+        />
+        <div class="labelInput" style="margin-left: 20px" *ngIf="luces.checked">
+          OK
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!luces.checked"
+        >
+          FALLA
+        </div>
+      </div>
+
+      <label *ngIf="!luces.checked" for="luces_obs" class="labelInput"
+        >Luces Observaciones</label
+      >
+      <input
+        *ngIf="!luces.checked"
+        type="text"
+        id="luces_obs"
+        name="luces_obs"
+        class="inputClass"
+        [(ngModel)]="_Item.luces_obs"
+      />
+
+      <label for="torreta" class="labelInput">Torreta</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="torreta"
+          #torreta
+          [(ngModel)]="_torreta"
+          name="torreta"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="torreta.checked"
+        >
+          OK
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!torreta.checked"
+        >
+          FALLA
+        </div>
+      </div>
+
+      <label *ngIf="!torreta.checked" for="torreta_obs" class="labelInput"
+        >Torreta Observaciones</label
+      >
+      <input
+        *ngIf="!torreta.checked"
+        type="text"
+        id="torreta_obs"
+        name="torreta_obs"
+        class="inputClass"
+        [(ngModel)]="_Item.torreta_obs"
+      />
+
+      <label for="neumaticos" class="labelInput">Neumaticos</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="neumaticos"
+          #neumaticos
+          [(ngModel)]="_neumaticos"
+          name="neumaticos"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="neumaticos.checked"
+        >
+          OK
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!neumaticos.checked"
+        >
+          FALLA
+        </div>
+      </div>
+
+      <label *ngIf="!neumaticos.checked" for="neumaticos_obs" class="labelInput"
+        >Neumaticos Observaciones</label
+      >
+      <input
+        *ngIf="!neumaticos.checked"
+        type="text"
+        id="neumaticos_obs"
+        name="neumaticos_obs"
+        class="inputClass"
+        [(ngModel)]="_Item.neumaticos_obs"
+      />
+
+      <label for="pernos_bujes" class="labelInput">Pernos / Bujes</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="pernos_bujes"
+          #pernos_bujes
+          [(ngModel)]="_pernos_bujes"
+          name="pernos_bujes"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="pernos_bujes.checked"
+        >
+          OK
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!pernos_bujes.checked"
+        >
+          FALLA
+        </div>
+      </div>
+
+      <label
+        *ngIf="!pernos_bujes.checked"
+        for="pernos_bujes_obs"
+        class="labelInput"
+        >Pernos/Bujes Observaciones</label
+      >
+      <input
+        *ngIf="!pernos_bujes.checked"
+        type="text"
+        id="pernos_bujes_obs"
+        name="pernos_bujes_obs"
+        class="inputClass"
+        [(ngModel)]="_Item.pernos_bujes_obs"
+      />
+
+      <label for="direccion" class="labelInput">Direccion</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="direccion"
+          #direccion
+          [(ngModel)]="_direccion"
+          name="direccion"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="direccion.checked"
+        >
+          OK
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!direccion.checked"
+        >
+          FALLA
+        </div>
+      </div>
+
+      <label *ngIf="!direccion.checked" for="direccion_obs" class="labelInput"
+        >Direccion Observaciones</label
+      >
+      <input
+        *ngIf="!direccion.checked"
+        type="text"
+        id="direccion_obs"
+        name="direccion_obs"
+        class="inputClass"
+        [(ngModel)]="_Item.direccion_obs"
+      />
+
+      <label for="espejos_retrovisores" class="labelInput"
+        >Espejos Retrovisores</label
+      >
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="espejos_retrovisores"
+          #espejos_retrovisores
+          [(ngModel)]="_espejos_retrovisores"
+          name="espejos_retrovisores"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="espejos_retrovisores.checked"
+        >
+          OK
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!espejos_retrovisores.checked"
+        >
+          FALLA
+        </div>
+      </div>
+
+      <label
+        *ngIf="!espejos_retrovisores.checked"
+        for="espejos_retrovisores_obs"
+        class="labelInput"
+        >Espejos Retrovisores Observaciones</label
+      >
+      <input
+        *ngIf="!espejos_retrovisores.checked"
+        type="text"
+        id="espejos_retrovisores_obs"
+        name="espejos_retrovisores_obs"
+        class="inputClass"
+        [(ngModel)]="_Item.espejos_retrovisores_obs"
+      />
+
+      <label for="claxon" class="labelInput">Claxon</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="claxon"
+          #claxon
+          [(ngModel)]="_claxon"
+          name="claxon"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="claxon.checked"
+        >
+          OK
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!claxon.checked"
+        >
+          FALLA
+        </div>
+      </div>
+
+      <label *ngIf="!claxon.checked" for="claxon_obs" class="labelInput"
+        >Claxon Observaciones</label
+      >
+      <input
+        *ngIf="!claxon.checked"
+        type="text"
+        id="claxon_obs"
+        name="claxon_obs"
+        class="inputClass"
+        [(ngModel)]="_Item.claxon_obs"
+      />
+
+      <label for="cinturon_seguridad" class="labelInput"
+        >Cinturon Seguridad</label
+      >
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="cinturon_seguridad"
+          #cinturon_seguridad
+          [(ngModel)]="_cinturon_seguridad"
+          name="cinturon_seguridad"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="cinturon_seguridad.checked"
+        >
+          OK
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!cinturon_seguridad.checked"
+        >
+          FALLA
+        </div>
+      </div>
+
+      <label
+        *ngIf="!cinturon_seguridad.checked"
+        for="cinturon_seguridad_obs"
+        class="labelInput"
+        >Cinturon Seguridad Observaciones</label
+      >
+      <input
+        *ngIf="!cinturon_seguridad.checked"
+        type="text"
+        id="cinturon_seguridad_obs"
+        name="cinturon_seguridad_obs"
+        class="inputClass"
+        [(ngModel)]="_Item.cinturon_seguridad_obs"
+      />
     </form>
   </div>
 </div>

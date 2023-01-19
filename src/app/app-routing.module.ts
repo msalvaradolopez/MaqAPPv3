@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BusEquiposComponent } from './bus-equipos/bus-equipos.component';
 import { BusHorasMinutosComponent } from './bus-horas-minutos/bus-horas-minutos.component';
+import { BusMantenimientoComponent } from './bus-mantenimiento/bus-mantenimiento.component';
 import { BusObrasComponent } from './bus-obras/bus-obras.component';
 import { BusOperadoresComponent } from './bus-operadores/bus-operadores.component';
 import { BusSupervisoresComponent } from './bus-supervisores/bus-supervisores.component';
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: 'busObras', component: BusObrasComponent },
   { path: 'busOperadores', component: BusOperadoresComponent },
   { path: 'busSupervisores', component: BusSupervisoresComponent },
+  { path: 'busMantenimiento', component: BusMantenimientoComponent },
   { path: 'docUbicaciones', component: DocUbicacionesComponent },
   { path: 'docUbicacionesDet', component: DocUbicacionesDetComponent },
   { path: 'docBitSeg', component: DocBitSegComponent },

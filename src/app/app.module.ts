@@ -38,6 +38,7 @@ import { ConUbicacionesComponent } from './con-ubicaciones/con-ubicaciones.compo
 import { DocInsPecDetComponent } from './doc-ins-pec-det/doc-ins-pec-det.component';
 import { DocInsPecComponent } from './doc-ins-pec/doc-ins-pec.component';
 import { FiltrosInsPecComponent } from './filtros-ins-pec/filtros-ins-pec.component';
+import { BusMantenimientoComponent } from './bus-mantenimiento/bus-mantenimiento.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { FiltrosInsPecComponent } from './filtros-ins-pec/filtros-ins-pec.compon
     DocInsPecDetComponent,
     DocInsPecComponent,
     FiltrosInsPecComponent,
+    BusMantenimientoComponent,
   ],
   imports: [
     BrowserModule,
