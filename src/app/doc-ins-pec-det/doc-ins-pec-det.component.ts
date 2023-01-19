@@ -58,7 +58,7 @@ export class DocInsPecDetComponent implements OnInit, AfterViewInit {
 
     if (sessionStorage.getItem('Item')) {
       this._Item = JSON.parse(sessionStorage.getItem('Item')!);
-      this._accion = this._Item.docInspeccion == null ? 'N' : 'E';
+      this._accion = this._Item.docInspeccion == 0 ? 'N' : 'E';
       var fechaAux = new Date(this._Item.fecha);
       this._fecha = this._svrUtilierias.convertDateToString(fechaAux);
 
@@ -77,6 +77,25 @@ export class DocInsPecDetComponent implements OnInit, AfterViewInit {
       if (this._Item.idResponsableMtto != '0')
         this._Item.nomResponsableMtto =
           this._Item.idResponsableMtto + ' | ' + this._Item.nomResponsableMtto;
+
+      this._frenos = this._Item.frenos == 'O' ? true : false;
+      this._alarma_rev = this._Item.alarma_rev == 'O' ? true : false;
+      this._nivel_aceite = this._Item.nivel_aceite == 'O' ? true : false;
+      this._motor = this._Item.motor == 'O' ? true : false;
+      this._transmision = this._Item.transmision == 'O' ? true : false;
+      this._fugas_aceite = this._Item.fugas_aceite == 'O' ? true : false;
+      this._nivel_agua = this._Item.nivel_agua == 'O' ? true : false;
+      this._extinguidor = this._Item.extinguidor == 'O' ? true : false;
+      this._luces = this._Item.luces == 'O' ? true : false;
+      this._torreta = this._Item.torreta == 'O' ? true : false;
+      this._neumaticos = this._Item.neumaticos == 'O' ? true : false;
+      this._pernos_bujes = this._Item.pernos_bujes == 'O' ? true : false;
+      this._direccion = this._Item.direccion == 'O' ? true : false;
+      this._espejos_retrovisores =
+        this._Item.espejos_retrovisores == 'O' ? true : false;
+      this._claxon = this._Item.claxon == 'O' ? true : false;
+      this._cinturon_seguridad =
+        this._Item.cinturon_seguridad == 'O' ? true : false;
     } else {
       this._accion = 'N';
       this.setItem();
@@ -117,8 +136,70 @@ export class DocInsPecDetComponent implements OnInit, AfterViewInit {
   }
 
   btnGuardar() {
+    // OBTENER ID DEL TEXTO INPUT
+    if (this._Item.idSupervisor == '0') {
+      this._toastr.error('Guardar.', 'Falta Supervisor');
+      return;
+    }
+
+    if (this._Item.idEconomico == '0') {
+      this._toastr.error('Guardar.', 'Falta Equipo');
+      return;
+    }
+
+    if (this._Item.idOperador == '0') {
+      this._toastr.error('Guardar.', 'Falta Operador');
+      return;
+    }
+
+    if (this._Item.idResponsableMtto == '0') {
+      this._toastr.error('Guardar.', 'Falta Responsable Mtto');
+      return;
+    }
+
+    if (this._Item.horometro == 0) {
+      this._toastr.error('Guardar.', 'Falta Horometro');
+      return;
+    }
+
     this._fecha = $('#datepicker').val();
     this._Item.fecha = this._svrUtilierias.convertStringToDate(this._fecha);
+
+    this._Item.frenos = this._frenos ? 'O' : 'F';
+    this._Item.alarma_rev = this._alarma_rev ? 'O' : 'F';
+    this._Item.nivel_aceite = this._nivel_aceite ? 'O' : 'F';
+    this._Item.motor = this._motor ? 'O' : 'F';
+    this._Item.transmision = this._transmision ? 'O' : 'F';
+    this._Item.fugas_aceite = this._fugas_aceite ? 'O' : 'F';
+    this._Item.nivel_agua = this._nivel_agua ? 'O' : 'F';
+    this._Item.extinguidor = this._extinguidor ? 'O' : 'F';
+    this._Item.luces = this._luces ? 'O' : 'F';
+    this._Item.torreta = this._torreta ? 'O' : 'F';
+    this._Item.neumaticos = this._neumaticos ? 'O' : 'F';
+    this._Item.pernos_bujes = this._pernos_bujes ? 'O' : 'F';
+    this._Item.direccion = this._direccion ? 'O' : 'F';
+    this._Item.espejos_retrovisores = this._espejos_retrovisores ? 'O' : 'F';
+    this._Item.claxon = this._claxon ? 'O' : 'F';
+    this._Item.cinturon_seguridad = this._cinturon_seguridad ? 'O' : 'F';
+
+    let lAccionRecurso: string = 'inspec/insItem';
+
+    if (this._accion == 'E') lAccionRecurso = 'inspec/updItem';
+
+    this._servicios.wsGeneral(lAccionRecurso, this._Item).subscribe(
+      (resp) => {},
+      (error) =>
+        this._toastr.error(
+          'Error : ' + error.error.ExceptionMessage,
+          'Guardar.'
+        ),
+      () => {
+        this._toastr.success('Registro guardado.');
+        sessionStorage.removeItem('List');
+        if (this._accion == 'E') this.btnRegresar();
+        else this.setItem();
+      }
+    );
   }
 
   buscarSupervisor() {
@@ -264,5 +345,22 @@ export class DocInsPecDetComponent implements OnInit, AfterViewInit {
       nomEquipo: '',
       nomResponsableMtto: '',
     };
+
+    this._frenos = true;
+    this._alarma_rev = true;
+    this._nivel_aceite = true;
+    this._motor = true;
+    this._transmision = true;
+    this._fugas_aceite = true;
+    this._nivel_agua = true;
+    this._extinguidor = true;
+    this._luces = true;
+    this._torreta = true;
+    this._neumaticos = true;
+    this._pernos_bujes = true;
+    this._direccion = true;
+    this._espejos_retrovisores = true;
+    this._claxon = true;
+    this._cinturon_seguridad = true;
   }
 }
