@@ -14,6 +14,8 @@ declare var $: any;
   styleUrls: ['./doc-ins-pec-det.component.css'],
 })
 export class DocInsPecDetComponent implements OnInit, AfterViewInit {
+  _loading: boolean = false;
+
   _frenos: boolean = true;
   _alarma_rev: boolean = true;
   _nivel_aceite: boolean = true;
@@ -198,6 +200,45 @@ export class DocInsPecDetComponent implements OnInit, AfterViewInit {
         sessionStorage.removeItem('List');
         if (this._accion == 'E') this.btnRegresar();
         else this.setItem();
+      }
+    );
+  }
+
+  btnFormato() {
+    let formatoPDFbase64: string = '';
+    this._loading = true;
+    this._servicios.wsGeneral('inspec/getPDF', this._Item).subscribe(
+      (resp) => {
+        formatoPDFbase64 = resp;
+        //console.log(formatoPDFbase64);
+      },
+      (error) => {
+        this._loading = false;
+        this._toastr.error(
+          'Error : ' + error.error.ExceptionMessage,
+          'Generar PDF bitacora.'
+        );
+      },
+      () => {
+        sessionStorage.setItem('Item', JSON.stringify(this._Item));
+        this._loading = false;
+
+        var base64str = formatoPDFbase64;
+
+        // decode base64 string, remove space for IE compatibility
+        var binary = atob(base64str.replace(/\s/g, ''));
+        var len = binary.length;
+        var buffer = new ArrayBuffer(len);
+        var view = new Uint8Array(buffer);
+        for (var i = 0; i < len; i++) {
+          view[i] = binary.charCodeAt(i);
+        }
+
+        // create the blob object with content-type "application/pdf"
+        var blob = new Blob([view], { type: 'application/pdf' });
+        var url = URL.createObjectURL(blob);
+
+        window.open(url, '_blank');
       }
     );
   }

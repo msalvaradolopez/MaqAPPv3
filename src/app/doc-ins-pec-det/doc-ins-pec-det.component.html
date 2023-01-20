@@ -2,10 +2,17 @@
 <div class="seccion-titulo">
   <div class="menu-catalogos">
     <h2 class="colorBlanco">Inspección : {{ _accionTxt }}</h2>
-    <div style="max-width: 350px; min-width: 100px">
+    <div style="max-width: 450px; min-width: 100px">
       <a class="boton-regresar color-verde" (click)="btnRegresar()">
         <i class="fa-solid fa-house icono-xlg centrar-icono"></i>
         <span class="textoBtn"> &thinsp;Regresar</span>
+      </a>
+      <a
+        class="boton-regresar color-verde icono-posicion-tres"
+        (click)="btnFormato()"
+      >
+        <i class="fa-solid fa-file icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;PDF</span>
       </a>
       <a
         *ngIf="_accion == 'E'"
