@@ -7,6 +7,14 @@
         <i class="fa-solid fa-house icono-xlg centrar-icono"></i>
         <span class="textoBtn"> &thinsp;Regresar</span>
       </a>
+      <a
+        *ngIf="_accion == 'E'"
+        class="boton-regresar color-verde"
+        (click)="btnEliminar()"
+      >
+        <i class="fa-solid fa-trash icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;Eliminar</span>
+      </a>
       <a class="boton-guardar color-verde" (click)="btnGuardar()">
         <i class="fa-solid fa-floppy-disk icono-xlg centrar-icono"></i>
         <span class="textoBtn"> &thinsp;Guardar</span>

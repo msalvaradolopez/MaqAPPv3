@@ -13,6 +13,7 @@ import { CatObrasComponent } from './cat-obras/cat-obras.component';
 import { CatOperadoresDetComponent } from './cat-operadores-det/cat-operadores-det.component';
 import { CatOperadoresComponent } from './cat-operadores/cat-operadores.component';
 import { ConBitSegComponent } from './con-bit-seg/con-bit-seg.component';
+import { ConInsPecComponent } from './con-ins-pec/con-ins-pec.component';
 import { ConTableroComponent } from './con-tablero/con-tablero.component';
 import { ConUbicacionesComponent } from './con-ubicaciones/con-ubicaciones.component';
 import { DocBitSegDetEquipoComponent } from './doc-bit-seg-det-equipo/doc-bit-seg-det-equipo.component';
@@ -55,6 +56,7 @@ const routes: Routes = [
   { path: 'conUbicaciones', component: ConUbicacionesComponent },
   { path: 'docInsPec', component: DocInsPecComponent },
   { path: 'docInsPecDet', component: DocInsPecDetComponent },
+  { path: 'conInsPec', component: ConInsPecComponent },
   { path: 'FiltrosInsPec', component: FiltrosInsPecComponent },
 ];
 

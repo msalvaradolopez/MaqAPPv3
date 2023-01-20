@@ -1,0 +1,165 @@
+<br />
+<div class="seccion-titulo">
+  <div class="menu-catalogos">
+    <h2 class="colorBlanco">Consultas Inspeccion</h2>
+    <div style="max-width: 350px; min-width: 100px">
+      <a class="boton-filtros" (click)="btnFiltros()">
+        <i class="fa-solid fa-filter centrar-icono icono-xlg"></i>
+        <span class="textoBtn"> &thinsp;Filtrar</span>
+      </a>
+    </div>
+  </div>
+</div>
+<br />
+<div class="rectangle-standard vertical-scroll">
+  <table class="table-standard">
+    <thead>
+      <tr>
+        <th>Documento</th>
+        <th>Fecha</th>
+        <th>Supervisor</th>
+        <th>Equipo</th>
+        <th>Operador</th>
+        <th>Turno</th>
+        <th>Horometro</th>
+        <th>Mantenimiento</th>
+        <th>Frenos</th>
+        <th>Frenod Obs</th>
+        <th>Alarma/Rev</th>
+        <th>Alarma/Rev Obs</th>
+        <th>Nivel Aceite</th>
+        <th>Nivel Aceite Obs</th>
+        <th>Motor</th>
+        <th>Motor Obs</th>
+        <th>Transmision</th>
+        <th>Transmision Obs</th>
+        <th>Fugas Aceite</th>
+        <th>Fugas Aceite Obs</th>
+        <th>Nivel Agua</th>
+        <th>Nivel Agua Obs</th>
+        <th>Extinguidor</th>
+        <th>Extinguidor Obs</th>
+        <th>Luces</th>
+        <th>Luces Obs</th>
+        <th>Torreta</th>
+        <th>Torreta Obs</th>
+        <th>Neumaticos</th>
+        <th>Neumaticos Obs</th>
+        <th>Pernos/Bujes</th>
+        <th>Pernos/Bujes Obs</th>
+        <th>Direccion</th>
+        <th>Direccion Obs</th>
+        <th>Espejos Retrovisores</th>
+        <th>Espejos Retrovisores Obs</th>
+        <th>Claxon</th>
+        <th>Claxon Obs</th>
+        <th>Cinturon Seguridad</th>
+        <th>Cinturon Seguridad Obs</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of _List">
+        <td>{{ item.docInspeccion }}</td>
+        <td style="width: 40px">{{ item.fecha | date : "dd/MM HH:mm" }}</td>
+        <td style="text-align: left">
+          {{ item.idSupervisor }} | {{ item.nomSupervisor }}
+        </td>
+        <td style="text-align: left">
+          {{ item.idEconomico }} | {{ item.nomEquipo }}
+        </td>
+        <td style="text-align: left">
+          {{ item.idOperador }} | {{ item.nomOperador }}
+        </td>
+        <td>
+          <p *ngIf="item.turno == 'M'">Matutino</p>
+          <p *ngIf="item.turno == 'V'">Vespertino</p>
+          <p *ngIf="item.turno == 'N'">Nocturno</p>
+        </td>
+        <td>{{ item.horometro }}</td>
+        <td>{{ item.idResponsableMtto }} | {{ item.nomResponsableMtto }}</td>
+        <td>
+          <p *ngIf="item.frenos == 'O'">OK</p>
+          <p *ngIf="item.frenos == 'F'">FALLA</p>
+        </td>
+        <td>{{ item.frenos_obs }}</td>
+        <td>
+          <p *ngIf="item.alarma_rev == 'O'">OK</p>
+          <p *ngIf="item.alarma_rev == 'F'">FALLA</p>
+        </td>
+        <td>{{ item.alarma_rev_obs }}</td>
+        <td>
+          <p *ngIf="item.nivel_aceite == 'O'">OK</p>
+          <p *ngIf="item.nivel_aceite == 'F'">FALLA</p>
+        </td>
+        <td>{{ item.nivel_aceite_obs }}</td>
+        <td>
+          <p *ngIf="item.motor == 'O'">OK</p>
+          <p *ngIf="item.motor == 'F'">FALLA</p>
+        </td>
+        <td>{{ item.motor_obs }}</td>
+        <td>
+          <p *ngIf="item.transmision == 'O'">OK</p>
+          <p *ngIf="item.transmision == 'F'">FALLA</p>
+        </td>
+        <td>{{ item.transmision_obs }}</td>
+        <td>
+          <p *ngIf="item.fugas_aceite == 'O'">OK</p>
+          <p *ngIf="item.fugas_aceite == 'F'">FALLA</p>
+        </td>
+        <td>{{ item.fugas_aceite_obs }}</td>
+        <td>
+          <p *ngIf="item.nivel_agua == 'O'">OK</p>
+          <p *ngIf="item.nivel_agua == 'F'">FALLA</p>
+        </td>
+        <td>{{ item.nivel_agua_obs }}</td>
+        <td>
+          <p *ngIf="item.extinguidor == 'O'">OK</p>
+          <p *ngIf="item.extinguidor == 'F'">FALLA</p>
+        </td>
+        <td>{{ item.extinguidor_obs }}</td>
+        <td>
+          <p *ngIf="item.luces == 'O'">OK</p>
+          <p *ngIf="item.luces == 'F'">FALLA</p>
+        </td>
+        <td>{{ item.luces_obs }}</td>
+        <td>
+          <p *ngIf="item.torreta == 'O'">OK</p>
+          <p *ngIf="item.torreta == 'F'">FALLA</p>
+        </td>
+        <td>{{ item.torreta_obs }}</td>
+        <td>
+          <p *ngIf="item.neumaticos == 'O'">OK</p>
+          <p *ngIf="item.neumaticos == 'F'">FALLA</p>
+        </td>
+        <td>{{ item.neumaticos_obs }}</td>
+        <td>
+          <p *ngIf="item.pernos_bujes == 'O'">OK</p>
+          <p *ngIf="item.pernos_bujes == 'F'">FALLA</p>
+        </td>
+        <td>{{ item.pernos_bujes_obs }}</td>
+        <td>
+          <p *ngIf="item.direccion == 'O'">OK</p>
+          <p *ngIf="item.direccion == 'F'">FALLA</p>
+        </td>
+        <td>{{ item.direccion_obs }}</td>
+        <td>
+          <p *ngIf="item.espejos_retrovisores == 'O'">OK</p>
+          <p *ngIf="item.espejos_retrovisores == 'F'">FALLA</p>
+        </td>
+        <td>{{ item.espejos_retrovisores_obs }}</td>
+        <td>
+          <p *ngIf="item.claxon == 'O'">OK</p>
+          <p *ngIf="item.claxon == 'F'">FALLA</p>
+        </td>
+        <td>{{ item.claxon_obs }}</td>
+        <td>
+          <p *ngIf="item.cinturon_seguridad == 'O'">OK</p>
+          <p *ngIf="item.cinturon_seguridad == 'F'">FALLA</p>
+        </td>
+        <td>{{ item.cinturon_seguridad_obs }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <app-sin-informacion *ngIf="_sinInfo"></app-sin-informacion>
+</div>
+<app-loading-circle *ngIf="_loading"></app-loading-circle>

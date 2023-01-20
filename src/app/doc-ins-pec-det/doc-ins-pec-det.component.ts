@@ -202,6 +202,24 @@ export class DocInsPecDetComponent implements OnInit, AfterViewInit {
     );
   }
 
+  btnEliminar() {
+    if (this._Item.idInspeccion == 0) this.btnRegresar();
+
+    this._servicios.wsGeneral('inspec/delItem', this._Item).subscribe(
+      (resp) => {},
+      (error) =>
+        this._toastr.error(
+          'Error : ' + error.error.ExceptionMessage,
+          'Guardar.'
+        ),
+      () => {
+        this._toastr.success('Registro eliminado.');
+        sessionStorage.removeItem('List');
+        this.btnRegresar();
+      }
+    );
+  }
+
   buscarSupervisor() {
     this._fecha = $('#datepicker').val();
     this._Item.fecha = this._svrUtilierias.convertStringToDate(this._fecha);

@@ -39,6 +39,7 @@ import { DocInsPecDetComponent } from './doc-ins-pec-det/doc-ins-pec-det.compone
 import { DocInsPecComponent } from './doc-ins-pec/doc-ins-pec.component';
 import { FiltrosInsPecComponent } from './filtros-ins-pec/filtros-ins-pec.component';
 import { BusMantenimientoComponent } from './bus-mantenimiento/bus-mantenimiento.component';
+import { ConInsPecComponent } from './con-ins-pec/con-ins-pec.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { BusMantenimientoComponent } from './bus-mantenimiento/bus-mantenimiento
     DocInsPecComponent,
     FiltrosInsPecComponent,
     BusMantenimientoComponent,
+    ConInsPecComponent,
   ],
   imports: [
     BrowserModule,
