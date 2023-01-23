@@ -69,7 +69,7 @@ export class DocUbicacionesDetComponent
       this._Item = JSON.parse(sessionStorage.getItem('Item')!);
       var fechaAux = new Date(this._Item.fecha_alta);
       this._fecha = this._svrUtilierias.convertDateToString(fechaAux);
-      this._accion = this._Item.idUbicacion == null ? 'N' : 'E';
+      this._accion = this._Item.idUbicacion == 0 ? 'N' : 'E';
     } else {
       this._accion = 'N';
       this._Item.fecha_alta = this._svrUtilierias.convertStringToDate(

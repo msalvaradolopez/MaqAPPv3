@@ -12,6 +12,7 @@ import { IFiltrosInsPec } from '../IFiltrosInsPec';
 })
 export class DocInsPecComponent implements OnInit {
   _loading: boolean = false;
+  _sinInfo: boolean = false;
   _List: IInsPec[] = [];
   _Filtros!: IFiltrosInsPec;
 
@@ -46,6 +47,7 @@ export class DocInsPecComponent implements OnInit {
       },
       () => {
         this._loading = false;
+        if (this._List == null || this._List.length == 0) this._sinInfo = true;
       }
     );
   }

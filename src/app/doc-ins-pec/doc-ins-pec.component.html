@@ -34,5 +34,7 @@
       <div class="letra2">Fecha: {{ item.fecha | date : "dd/MM HH:mm" }}</div>
     </li>
   </ul>
+
+  <app-sin-informacion *ngIf="_sinInfo"></app-sin-informacion>
 </div>
 <app-loading-circle *ngIf="_loading"></app-loading-circle>

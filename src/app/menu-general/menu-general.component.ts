@@ -41,6 +41,13 @@ export class MenuGeneralComponent implements OnInit {
         'Permite ingresar la ubicación, comentarios, litros, horometro, odometro de Equipos y Maquinaria.',
     },
     {
+      categoria: 'A',
+      icono: 'fa-solid fa-rectangle-list',
+      idMenu: 'conUbicaciones',
+      Nombre: 'Consulta de ubicaciones',
+      Descripcion: '',
+    },
+    {
       categoria: 'S',
       icono: 'fa-solid fa-circle-exclamation',
       idMenu: 'docBitSeg',
@@ -111,13 +118,7 @@ export class MenuGeneralComponent implements OnInit {
       Descripcion:
         'Permite ingresar y modificar los registros de Equipos y Maquinaria.',
     },
-    {
-      categoria: 'A',
-      icono: 'fa-solid fa-rectangle-list',
-      idMenu: 'conUbicaciones',
-      Nombre: 'Consulta de ubicaciones',
-      Descripcion: '',
-    },
+
     {
       categoria: 'A',
       icono: 'fa-solid fa-plane',

@@ -49,6 +49,8 @@ export class CatOperadoresComponent implements OnInit, OnDestroy {
 
               if (x.categoria == 'S') x.categoriaTxt = 'Supervisor';
 
+              if (x.categoria == 'M') x.categoriaTxt = 'Mantenimiento';
+
               if (x.categoria == 'O') x.categoriaTxt = 'Operador';
 
               return x;
@@ -100,6 +102,8 @@ export class CatOperadoresComponent implements OnInit, OnDestroy {
             if (x.categoria == 'A') x.categoriaTxt = 'Administrador';
 
             if (x.categoria == 'S') x.categoriaTxt = 'Supervisor';
+
+            if (x.categoria == 'M') x.categoriaTxt = 'Mantenimiento';
 
             if (x.categoria == 'O') x.categoriaTxt = 'Operador';
 
