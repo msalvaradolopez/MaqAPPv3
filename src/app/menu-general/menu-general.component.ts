@@ -74,7 +74,7 @@ export class MenuGeneralComponent implements OnInit {
       categoria: 'S',
       icono: 'fa-solid fa-circle-exclamation',
       idMenu: 'docInsPec',
-      Nombre: 'Registro de Inspección Inicio de Turno',
+      Nombre: 'Check List Maquinaria',
       Descripcion:
         'Permite ingresar la ubicación, comentarios, litros, horometro, odometro de Equipos y Maquinaria.',
     },
@@ -82,7 +82,7 @@ export class MenuGeneralComponent implements OnInit {
       categoria: 'A',
       icono: 'fa-solid fa-circle-exclamation',
       idMenu: 'docInsPec',
-      Nombre: 'Registro de Inspección Inicio de Turno',
+      Nombre: 'Check List Maquinaria',
       Descripcion:
         'Permite ingresar la ubicación, comentarios, litros, horometro, odometro de Equipos y Maquinaria.',
     },
@@ -91,7 +91,7 @@ export class MenuGeneralComponent implements OnInit {
       categoria: 'A',
       icono: 'fa-solid fa-circle-exclamation',
       idMenu: 'conInsPec',
-      Nombre: 'Consulta de Inspección de Inicio de Turno',
+      Nombre: 'Consulta de Check List Maquinaria',
       Descripcion:
         'Permite ingresar la ubicación, comentarios, litros, horometro, odometro de Equipos y Maquinaria.',
     },
