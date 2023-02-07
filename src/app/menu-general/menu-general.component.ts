@@ -67,14 +67,14 @@ export class MenuGeneralComponent implements OnInit {
       categoria: 'A',
       icono: 'fa-solid fa-rectangle-list',
       idMenu: 'conBitSeg',
-      Nombre: 'Consulta de Bitacora Seguridad',
+      Nombre: 'Consulta de Bitácora Seguridad',
       Descripcion: '',
     },
     {
       categoria: 'S',
       icono: 'fa-solid fa-circle-exclamation',
       idMenu: 'docInsPec',
-      Nombre: 'Registro de Bitácora Seguridad',
+      Nombre: 'Registro de Inspección Inicio de Turno',
       Descripcion:
         'Permite ingresar la ubicación, comentarios, litros, horometro, odometro de Equipos y Maquinaria.',
     },
@@ -82,7 +82,7 @@ export class MenuGeneralComponent implements OnInit {
       categoria: 'A',
       icono: 'fa-solid fa-circle-exclamation',
       idMenu: 'docInsPec',
-      Nombre: 'Registro de Inspecciòn Inicio de Turno',
+      Nombre: 'Registro de Inspección Inicio de Turno',
       Descripcion:
         'Permite ingresar la ubicación, comentarios, litros, horometro, odometro de Equipos y Maquinaria.',
     },
@@ -91,7 +91,7 @@ export class MenuGeneralComponent implements OnInit {
       categoria: 'A',
       icono: 'fa-solid fa-circle-exclamation',
       idMenu: 'conInsPec',
-      Nombre: 'Consulta de Inspecciòn de Inicio de Turno',
+      Nombre: 'Consulta de Inspección de Inicio de Turno',
       Descripcion:
         'Permite ingresar la ubicación, comentarios, litros, horometro, odometro de Equipos y Maquinaria.',
     },
