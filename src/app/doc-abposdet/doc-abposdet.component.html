@@ -1,0 +1,512 @@
+<br />
+<div class="seccion-titulo">
+  <div class="menu-catalogos">
+    <h2 class="colorBlanco">Abordaje Positivo : {{ _accionTxt }}</h2>
+    <div style="max-width: 450px; min-width: 100px">
+      <a class="boton-regresar color-verde" (click)="btnRegresar()">
+        <i class="fa-solid fa-house icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;Regresar</span>
+      </a>
+      <a
+        class="boton-regresar color-verde icono-posicion-tres"
+        (click)="btnFormato()"
+      >
+        <i class="fa-solid fa-file icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;PDF</span>
+      </a>
+      <a
+        *ngIf="_accion == 'E'"
+        class="boton-regresar color-verde"
+        (click)="btnEliminar()"
+      >
+        <i class="fa-solid fa-trash icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;Eliminar</span>
+      </a>
+      <a class="boton-guardar color-verde" (click)="btnGuardar()">
+        <i class="fa-solid fa-floppy-disk icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;Guardar</span>
+      </a>
+    </div>
+  </div>
+</div>
+<br />
+<div class="seccion-principal">
+  <div class="capturaBackGround">
+    <form class="formsClass" autocomplete="off">
+      <label for="_fecha" class="labelInput">Fecha</label>
+      <input
+        type="text"
+        class="inputReadOnlyClass"
+        [(ngModel)]="_fecha"
+        [value]="_fecha"
+        name="_fecha"
+        id="datepicker"
+        readonly="true"
+      />
+
+      <label for="empresa" class="labelInput">Empresa</label>
+      <input
+        type="text"
+        id="empresa"
+        name="empresa"
+        class="inputReadOnlyClass"
+        readonly="true"
+        placeholder="click para buscar..."
+        [(ngModel)]="_Item.nomObra"
+      />
+
+      <label for="responsable" class="labelInput">Responsable</label>
+      <input
+        type="text"
+        id="responsable"
+        name="responsable"
+        class="inputReadOnlyClass"
+        readonly="true"
+        placeholder="click para buscar..."
+        [(ngModel)]="_Item.nomSupervisor"
+      />
+
+      <label for="trabajador" class="labelInput">Trabajador</label>
+      <input
+        type="text"
+        id="trabajador"
+        name="trabajador"
+        class="inputReadOnlyClass"
+        readonly="true"
+        placeholder="click para buscar..."
+        [(ngModel)]="_Item.nomOperador"
+      />
+    </form>
+  </div>
+  <div class="capturaBackGround" style="margin-top: 10px">
+    <form class="formsClass" autocomplete="off">
+      <label for="riesgo" class="labelInput">Riesgo</label>
+      <select
+        id="riesgo"
+        name="riesgo"
+        class="select"
+        [(ngModel)]="_Item.riesgo"
+      >
+        <option value="ALTO">ALTO</option>
+        <option value="MEDIO">MEDIO</option>
+        <option value="BAJO">BAJO</option>
+      </select>
+
+      <label for="desvio" class="labelInput">Desvio</label>
+      <select
+        id="desvio"
+        name="desvio"
+        class="select"
+        [(ngModel)]="_Item.desvio"
+      >
+        <option value="EPP">EPP</option>
+        <option value="ACTO">ACTO</option>
+        <option value="CONDICION">CONDICION</option>
+      </select>
+    </form>
+  </div>
+  <div class="capturaBackGround" style="margin-top: 10px">
+    <form class="formsClass" autocomplete="off">
+      <label for="casco" class="labelInput">CASCO</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="casco"
+          #casco
+          [(ngModel)]="_casco"
+          name="casco"
+          class="toggle"
+        />
+        <div class="labelInput" style="margin-left: 20px" *ngIf="casco.checked">
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!casco.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="lentes" class="labelInput">LENTES</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="lentes"
+          #lentes
+          [(ngModel)]="_lentes"
+          name="lentes"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="lentes.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!lentes.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="guantes" class="labelInput">GUANTES</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="guantes"
+          #guantes
+          [(ngModel)]="_guantes"
+          name="guantes"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="guantes.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!guantes.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="uniforme" class="labelInput">UNIFORME</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="uniforme"
+          #uniforme
+          [(ngModel)]="_uniforme"
+          name="uniforme"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="uniforme.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!uniforme.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="zapatos" class="labelInput">ZAPATOS</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="zapatos"
+          #zapatos
+          [(ngModel)]="_zapatos"
+          name="zapatos"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="zapatos.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!zapatos.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="uni_fajado" class="labelInput">UNIFORME FAJADO</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="uni_fajado"
+          #uni_fajado
+          [(ngModel)]="_uni_fajado"
+          name="uni_fajado"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="uni_fajado.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!uni_fajado.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="tapones" class="labelInput">TAPONES</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="tapones"
+          #tapones
+          [(ngModel)]="_tapones"
+          name="tapones"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="tapones.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!tapones.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="mascarilla" class="labelInput">MASCARILLA</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="mascarilla"
+          #mascarilla
+          [(ngModel)]="_mascarilla"
+          name="mascarilla"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="mascarilla.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!mascarilla.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="careta" class="labelInput">CARETA FACIAL</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="careta"
+          #careta
+          [(ngModel)]="_careta"
+          name="careta"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="careta.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!careta.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="arnes" class="labelInput">ARNES</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="arnes"
+          #arnes
+          [(ngModel)]="_arnes"
+          name="arnes"
+          class="toggle"
+        />
+        <div class="labelInput" style="margin-left: 20px" *ngIf="arnes.checked">
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!arnes.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="polainas" class="labelInput">POLAINAS</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="polainas"
+          #polainas
+          [(ngModel)]="_polainas"
+          name="polainas"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="polainas.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!polainas.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="peto" class="labelInput">PETO</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="peto"
+          #peto
+          [(ngModel)]="_peto"
+          name="peto"
+          class="toggle"
+        />
+        <div class="labelInput" style="margin-left: 20px" *ngIf="peto.checked">
+          SI
+        </div>
+        <div class="labelInput" style="margin-left: 20px" *ngIf="!peto.checked">
+          NO
+        </div>
+      </div>
+
+      <label for="gogles" class="labelInput"
+        >GOGLES O CARETA PARA SOLDADOR</label
+      >
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="gogles"
+          #gogles
+          [(ngModel)]="_gogles"
+          name="gogles"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="gogles.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!gogles.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="otros" class="labelInput">OTROS</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="otros"
+          #otros
+          [(ngModel)]="_otros"
+          name="otros"
+          class="toggle"
+        />
+        <div class="labelInput" style="margin-left: 20px" *ngIf="otros.checked">
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!otros.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label *ngIf="otros.checked" for="otro_descrip" class="labelInput"
+        >OTROS DESCRIPCION</label
+      >
+      <input
+        *ngIf="otros.checked"
+        type="text"
+        id="otro_descrip"
+        name="otro_descrip"
+        class="inputClass"
+        [(ngModel)]="_Item.otro_descrip"
+      />
+    </form>
+  </div>
+  <div class="capturaBackGround" style="margin-top: 10px">
+    <form class="formsClass" autocomplete="off">
+      <label for="act_inseguros" class="labelInput">ACTOS INSEGUROS</label>
+      <input
+        type="text"
+        id="act_inseguros"
+        name="act_inseguros"
+        class="inputClass"
+        [(ngModel)]="_Item.act_inseguros"
+      />
+
+      <label for="acc_correctiva" class="labelInput">ACCION CORRECTIVA</label>
+      <input
+        type="text"
+        id="acc_correctiva"
+        name="acc_correctiva"
+        class="inputClass"
+        [(ngModel)]="_Item.acc_correctiva"
+      />
+
+      <label for="cond_inseguras" class="labelInput"
+        >CONDICIONES INSEGURAS</label
+      >
+      <input
+        type="text"
+        id="cond_inseguras"
+        name="cond_inseguras"
+        class="inputClass"
+        [(ngModel)]="_Item.cond_inseguras"
+      />
+
+      <label for="compromisos" class="labelInput">COMPROMISOS</label>
+      <input
+        type="text"
+        id="compromisos"
+        name="compromisos"
+        class="inputClass"
+        [(ngModel)]="_Item.compromisos"
+      />
+    </form>
+  </div>
+</div>
+
+<app-loading-circle *ngIf="_loading"></app-loading-circle>

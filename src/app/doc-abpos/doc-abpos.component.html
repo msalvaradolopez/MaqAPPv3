@@ -1,0 +1,37 @@
+<br />
+<div class="seccion-titulo" style="margin-bottom: 5px">
+  <div class="menu-catalogos">
+    <h2 class="colorBlanco">Abordaje Positivo</h2>
+    <div>
+      <a class="boton-filtros" (click)="btnFiltros()">
+        <i class="fa-solid fa-filter centrar-icono icono-xlg"></i>
+        <span class="textoBtn"> &thinsp;Filtrar</span>
+      </a>
+      <a class="boton-acciones" (click)="btnAgregar()">
+        <i class="fa-solid fa-circle-plus icono-xlg icono-plus-circle"></i>
+
+        <i class="fa-solid fa-plus icono-xlg centrar-icono icono-plus"></i>
+        <span class="textoBtn"> &thinsp;Nuevo</span>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="seccion-principal">
+  <ul class="list-cards">
+    <li
+      *ngFor="let item of _List"
+      class="card-item table-row"
+      (click)="btnEditar(item)"
+    >
+      <div class="letra1">Empresa: {{ item.nomObra }}</div>
+
+      <div class="letra2">Responsable Operativo: {{ item.nomSupervisor }}</div>
+      <div class="letra2">Nombre Trabajador: {{ item.nomOperador }}</div>
+
+      <div class="letra2">Fecha: {{ item.fecha | date : "dd/MM HH:mm" }}</div>
+    </li>
+  </ul>
+
+  <app-sin-informacion *ngIf="_sinInfo"></app-sin-informacion>
+</div>
+<app-loading-circle *ngIf="_loading"></app-loading-circle>

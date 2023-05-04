@@ -64,9 +64,11 @@ export class DocInsPecDetComponent implements OnInit, AfterViewInit {
       var fechaAux = new Date(this._Item.fecha);
       this._fecha = this._svrUtilierias.convertDateToString(fechaAux);
 
-      if (this._Item.idSupervisor != '0')
+      /*
+      if (this._Item.idSupervisor != '0') 
         this._Item.nomSupervisor =
           this._Item.idSupervisor + ' | ' + this._Item.nomSupervisor;
+      
 
       if (this._Item.idEconomico != '0')
         this._Item.nomEquipo =
@@ -79,6 +81,7 @@ export class DocInsPecDetComponent implements OnInit, AfterViewInit {
       if (this._Item.idResponsableMtto != '0')
         this._Item.nomResponsableMtto =
           this._Item.idResponsableMtto + ' | ' + this._Item.nomResponsableMtto;
+      */
 
       this._frenos = this._Item.frenos == 'O' ? true : false;
       this._alarma_rev = this._Item.alarma_rev == 'O' ? true : false;
@@ -133,7 +136,7 @@ export class DocInsPecDetComponent implements OnInit, AfterViewInit {
 
   btnRegresar() {
     sessionStorage.removeItem('busResp');
-    sessionStorage.removeItem('Listado');
+    sessionStorage.removeItem('_listado');
     this._router.navigate(['/docInsPec']);
   }
 
