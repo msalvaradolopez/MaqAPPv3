@@ -25,6 +25,7 @@ import { DocInsPecDetComponent } from './doc-ins-pec-det/doc-ins-pec-det.compone
 import { DocInsPecComponent } from './doc-ins-pec/doc-ins-pec.component';
 import { DocUbicacionesDetComponent } from './doc-ubicaciones-det/doc-ubicaciones-det.component';
 import { DocUbicacionesComponent } from './doc-ubicaciones/doc-ubicaciones.component';
+import { FiltrosAbposComponent } from './filtros-abpos/filtros-abpos.component';
 import { FiltrosInsPecComponent } from './filtros-ins-pec/filtros-ins-pec.component';
 import { FiltrosComponent } from './filtros/filtros.component';
 import { FrmBitSegComponent } from './frm-bit-seg/frm-bit-seg.component';
@@ -61,6 +62,7 @@ const routes: Routes = [
   { path: 'conInsPec', component: ConInsPecComponent },
   { path: 'FiltrosInsPec', component: FiltrosInsPecComponent },
   { path: 'docAbPos', component: DocAbposComponent },
+  { path: 'FiltrosAbPos', component: FiltrosAbposComponent },
   { path: 'docAbPosDet', component: DocAbposdetComponent },
 ];
 

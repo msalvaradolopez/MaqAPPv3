@@ -23,10 +23,12 @@
       class="card-item table-row"
       (click)="btnEditar(item)"
     >
-      <div class="letra1">Empresa: {{ item.nomObra }}</div>
+      <div class="letra1">{{ item.nomObra }}</div>
 
-      <div class="letra2">Responsable Operativo: {{ item.nomSupervisor }}</div>
-      <div class="letra2">Nombre Trabajador: {{ item.nomOperador }}</div>
+      <div class="letra2">Responsable Operativo</div>
+      <div class="letra2">{{ item.nomSupervisor }}</div>
+      <div class="letra2">Trabajador</div>
+      <div class="letra2">{{ item.nomOperador }}</div>
 
       <div class="letra2">Fecha: {{ item.fecha | date : "dd/MM HH:mm" }}</div>
     </li>

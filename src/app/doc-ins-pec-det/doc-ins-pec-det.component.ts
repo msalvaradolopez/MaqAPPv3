@@ -200,7 +200,7 @@ export class DocInsPecDetComponent implements OnInit, AfterViewInit {
         ),
       () => {
         this._toastr.success('Registro guardado.');
-        sessionStorage.removeItem('List');
+        sessionStorage.removeItem('_listado');
         if (this._accion == 'E') this.btnRegresar();
         else this.setItem();
       }
@@ -258,7 +258,7 @@ export class DocInsPecDetComponent implements OnInit, AfterViewInit {
         ),
       () => {
         this._toastr.success('Registro eliminado.');
-        sessionStorage.removeItem('List');
+        sessionStorage.removeItem('_listado');
         this.btnRegresar();
       }
     );

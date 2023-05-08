@@ -16,21 +16,6 @@ declare var $: any;
 export class DocAbposdetComponent implements OnInit, AfterViewInit {
   _loading: boolean = false;
 
-  _casco: boolean = true;
-  _lentes: boolean = true;
-  _guantes: boolean = true;
-  _uniforme: boolean = true;
-  _zapatos: boolean = true;
-  _uni_fajado: boolean = true;
-  _tapones: boolean = true;
-  _mascarilla: boolean = true;
-  _careta: boolean = true;
-  _arnes: boolean = true;
-  _polainas: boolean = true;
-  _peto: boolean = true;
-  _gogles: boolean = true;
-  _otros: boolean = false;
-
   _Item!: IAbPos;
   _accion: string = 'E';
 
@@ -67,6 +52,25 @@ export class DocAbposdetComponent implements OnInit, AfterViewInit {
       this._Item.fecha = this._svrUtilierias.convertStringToDate(this._fecha);
     }
 
+    if (sessionStorage.getItem('busResp')) {
+      this._BusResp = JSON.parse(sessionStorage.getItem('busResp')!);
+
+      if (this._BusResp.buscarPor == 'Obras') {
+        this._Item.idObra = this._BusResp.clave;
+        this._Item.nomObra = this._BusResp.claveTxt;
+      }
+
+      if (this._BusResp.buscarPor == 'Supervisores') {
+        this._Item.idSupervisor = this._BusResp.clave;
+        this._Item.nomSupervisor = this._BusResp.claveTxt;
+      }
+
+      if (this._BusResp.buscarPor == 'Operadores') {
+        this._Item.idOperador = this._BusResp.clave;
+        this._Item.nomOperador = this._BusResp.claveTxt;
+      }
+    }
+
     this._accionTxt = this._accion == 'E' ? 'Editando' : 'Nuevo';
   }
 
@@ -78,7 +82,76 @@ export class DocAbposdetComponent implements OnInit, AfterViewInit {
 
   btnFormato() {}
   btnEliminar() {}
-  btnGuardar() {}
+  btnGuardar() {
+    // OBTENER ID DEL TEXTO INPUT
+    if (this._Item.idObra == '0') {
+      this._toastr.error('Guardar.', 'Falta Supervisor');
+      return;
+    }
+
+    if (this._Item.idSupervisor == '0') {
+      this._toastr.error('Guardar.', 'Falta Equipo');
+      return;
+    }
+
+    if (this._Item.idOperador == '0') {
+      this._toastr.error('Guardar.', 'Falta Operador');
+      return;
+    }
+
+    this._fecha = $('#datepicker').val();
+    this._Item.fecha = this._svrUtilierias.convertStringToDate(this._fecha);
+
+    let lAccionRecurso: string = 'abpos/insItem';
+
+    if (this._accion == 'E') lAccionRecurso = 'abpos/updItem';
+
+    this._loading = true;
+    this._servicios.wsGeneral(lAccionRecurso, this._Item).subscribe(
+      (resp) => {},
+      (error) => {
+        this._loading = false;
+        this._toastr.error(
+          'Error : ' + error.error.ExceptionMessage,
+          'Guardar.'
+        );
+      },
+      () => {
+        this._loading = false;
+        this._toastr.success('Registro guardado.');
+        sessionStorage.removeItem('_listado');
+        if (this._accion == 'E') this.btnRegresar();
+        else this.setItem();
+      }
+    );
+  }
+
+  buscarEmpresa() {
+    this._fecha = $('#datepicker').val();
+    this._Item.fecha = this._svrUtilierias.convertStringToDate(this._fecha);
+
+    sessionStorage.setItem('Item', JSON.stringify(this._Item));
+    sessionStorage.setItem('busResp', JSON.stringify(this._BusResp));
+    this._router.navigate(['/busObras']);
+  }
+
+  buscarResponsable() {
+    this._fecha = $('#datepicker').val();
+    this._Item.fecha = this._svrUtilierias.convertStringToDate(this._fecha);
+
+    sessionStorage.setItem('Item', JSON.stringify(this._Item));
+    sessionStorage.setItem('busResp', JSON.stringify(this._BusResp));
+    this._router.navigate(['/busSupervisores']);
+  }
+
+  buscarTrabajador() {
+    this._fecha = $('#datepicker').val();
+    this._Item.fecha = this._svrUtilierias.convertStringToDate(this._fecha);
+
+    sessionStorage.setItem('Item', JSON.stringify(this._Item));
+    sessionStorage.setItem('busResp', JSON.stringify(this._BusResp));
+    this._router.navigate(['/busOperadores']);
+  }
 
   setItem() {
     this._Item = {
@@ -89,20 +162,20 @@ export class DocAbposdetComponent implements OnInit, AfterViewInit {
       idOperador: '0',
       riesgo: 'ALTO',
       desvio: 'EPP',
-      casco: 'S',
-      lentes: 'S',
-      guantes: 'S',
-      uniforme: 'S',
-      zapatos: 'S',
-      uni_fajado: 'S',
-      tapones: 'S',
-      mascarilla: 'S',
-      careta: 'S',
-      arnes: 'S',
-      polainas: 'S',
-      peto: 'S',
-      gogles: 'S',
-      otros: 'N',
+      casco: true,
+      lentes: true,
+      guantes: true,
+      uniforme: true,
+      zapatos: true,
+      uni_fajado: true,
+      tapones: true,
+      mascarilla: true,
+      careta: true,
+      arnes: true,
+      polainas: true,
+      peto: true,
+      gogles: true,
+      otros: false,
       otro_descrip: '',
       act_inseguros: '',
       acc_correctiva: '',
@@ -112,22 +185,63 @@ export class DocAbposdetComponent implements OnInit, AfterViewInit {
       nomOperador: '',
       nomObra: '',
     };
-
-    this._casco = true;
-    this._lentes = true;
-    this._guantes = true;
-    this._uniforme = true;
-    this._zapatos = true;
-    this._uni_fajado = true;
-    this._tapones = true;
-    this._mascarilla = true;
-    this._careta = true;
-    this._arnes = true;
-    this._polainas = true;
-    this._peto = true;
-    this._gogles = true;
-    this._otros = false;
   }
 
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void {
+    $.datepicker.regional['es'] = {
+      closeText: 'Cerrar',
+      prevText: '<Ant',
+      nextText: 'Sig>',
+      currentText: 'Hoy',
+      monthNames: [
+        'Enero',
+        'Febrero',
+        'Marzo',
+        'Abril',
+        'Mayo',
+        'Junio',
+        'Julio',
+        'Agosto',
+        'Septiembre',
+        'Octubre',
+        'Noviembre',
+        'Diciembre',
+      ],
+      monthNamesShort: [
+        'Ene',
+        'Feb',
+        'Mar',
+        'Abr',
+        'May',
+        'Jun',
+        'Jul',
+        'Ago',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dic',
+      ],
+      dayNames: [
+        'Domingo',
+        'Lunes',
+        'Martes',
+        'Miércoles',
+        'Jueves',
+        'Viernes',
+        'Sábado',
+      ],
+      dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+      dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+      weekHeader: 'Sm',
+      dateFormat: 'dd/mm/yy',
+      firstDay: 1,
+      isRTL: false,
+      showMonthAfterYear: false,
+      yearSuffix: '',
+    };
+
+    $.datepicker.setDefaults($.datepicker.regional['es']);
+
+    $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy' });
+  }
 }
