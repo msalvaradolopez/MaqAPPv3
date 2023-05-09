@@ -80,8 +80,63 @@ export class DocAbposdetComponent implements OnInit, AfterViewInit {
     this._router.navigate(['/docAbPos']);
   }
 
-  btnFormato() {}
-  btnEliminar() {}
+  btnFormato() {
+    let formatoPDFbase64: string = '';
+    this._loading = true;
+    this._servicios.wsGeneral('abpos/getPDF', this._Item).subscribe(
+      (resp) => {
+        formatoPDFbase64 = resp;
+        //console.log(formatoPDFbase64);
+      },
+      (error) => {
+        this._loading = false;
+        this._toastr.error(
+          'Error : ' + error.error.ExceptionMessage,
+          'Generar PDF bitacora.'
+        );
+      },
+      () => {
+        sessionStorage.setItem('Item', JSON.stringify(this._Item));
+        this._loading = false;
+
+        var base64str = formatoPDFbase64;
+
+        // decode base64 string, remove space for IE compatibility
+        var binary = atob(base64str.replace(/\s/g, ''));
+        var len = binary.length;
+        var buffer = new ArrayBuffer(len);
+        var view = new Uint8Array(buffer);
+        for (var i = 0; i < len; i++) {
+          view[i] = binary.charCodeAt(i);
+        }
+
+        // create the blob object with content-type "application/pdf"
+        var blob = new Blob([view], { type: 'application/pdf' });
+        var url = URL.createObjectURL(blob);
+
+        window.open(url, '_blank');
+      }
+    );
+  }
+
+  btnEliminar() {
+    if (this._Item.idAbordaje == 0) this.btnRegresar();
+
+    this._servicios.wsGeneral('abpos/delItem', this._Item).subscribe(
+      (resp) => {},
+      (error) =>
+        this._toastr.error(
+          'Error : ' + error.error.ExceptionMessage,
+          'Guardar.'
+        ),
+      () => {
+        this._toastr.success('Registro eliminado.');
+        sessionStorage.removeItem('_listado');
+        this.btnRegresar();
+      }
+    );
+  }
+
   btnGuardar() {
     // OBTENER ID DEL TEXTO INPUT
     if (this._Item.idObra == '0') {
