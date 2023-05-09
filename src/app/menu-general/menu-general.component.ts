@@ -105,6 +105,14 @@ export class MenuGeneralComponent implements OnInit {
     },
     {
       categoria: 'A',
+      icono: 'fa-solid fa-circle-exclamation',
+      idMenu: 'conAbPos',
+      Nombre: 'Consulta de Abordaje Positivo',
+      Descripcion:
+        'Permite ingresar la ubicación, comentarios, litros, horometro, odometro de Equipos y Maquinaria.',
+    },
+    {
+      categoria: 'A',
       icono: 'fa-solid fa-city',
       idMenu: 'catObras',
       Nombre: 'Catálogo de Obras',

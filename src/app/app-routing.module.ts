@@ -12,6 +12,7 @@ import { CatObrasDetComponent } from './cat-obras-det/cat-obras-det.component';
 import { CatObrasComponent } from './cat-obras/cat-obras.component';
 import { CatOperadoresDetComponent } from './cat-operadores-det/cat-operadores-det.component';
 import { CatOperadoresComponent } from './cat-operadores/cat-operadores.component';
+import { ConAbposComponent } from './con-abpos/con-abpos.component';
 import { ConBitSegComponent } from './con-bit-seg/con-bit-seg.component';
 import { ConInsPecComponent } from './con-ins-pec/con-ins-pec.component';
 import { ConTableroComponent } from './con-tablero/con-tablero.component';
@@ -64,6 +65,7 @@ const routes: Routes = [
   { path: 'docAbPos', component: DocAbposComponent },
   { path: 'FiltrosAbPos', component: FiltrosAbposComponent },
   { path: 'docAbPosDet', component: DocAbposdetComponent },
+  { path: 'conAbPos', component: ConAbposComponent },
 ];
 
 @NgModule({

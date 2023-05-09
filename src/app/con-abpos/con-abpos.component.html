@@ -1,0 +1,137 @@
+<br />
+<div class="seccion-titulo">
+  <div class="menu-catalogos">
+    <h2 class="colorBlanco">Consultas Abordaje Positivo</h2>
+    <div style="max-width: 350px; min-width: 100px">
+      <a class="boton-filtros" (click)="btnFiltros()">
+        <i class="fa-solid fa-filter centrar-icono icono-xlg"></i>
+        <span class="textoBtn"> &thinsp;Filtrar</span>
+      </a>
+    </div>
+  </div>
+</div>
+<br />
+<div class="rectangle-standard vertical-scroll">
+  <table class="table-standard">
+    <thead>
+      <tr>
+        <th>Documento</th>
+        <th>Fecha</th>
+        <th>Empresa</th>
+        <th>Responsable</th>
+        <th>Trabajador</th>
+        <th>Riesgo</th>
+        <th>Desvio</th>
+        <th>Casco</th>
+        <th>Lentes</th>
+        <th>Guanes</th>
+        <th>Uniforme</th>
+        <th>Zapatos</th>
+        <th>Uniforme Fajado</th>
+        <th>Tapones</th>
+        <th>Mascarilla</th>
+        <th>Careta Facial</th>
+        <th>Arnes</th>
+        <th>Polainas</th>
+        <th>Peto</th>
+        <th>Gogles o Careta Soldar</th>
+        <th>Otros</th>
+        <th>Otros Comentarios</th>
+        <th>Actos Inseguros</th>
+        <th>Accion Correctiva</th>
+        <th>Condiciones Inseguras</th>
+        <th>Compromisos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of _List">
+        <td>{{ item.idAbordaje }}</td>
+        <td style="width: 40px">{{ item.fecha | date : "dd/MM HH:mm" }}</td>
+        <td style="text-align: left">{{ item.idObra }} | {{ item.nomObra }}</td>
+        <td style="text-align: left">
+          {{ item.idSupervisor }} | {{ item.nomSupervisor }}
+        </td>
+        <td style="text-align: left">
+          {{ item.idOperador }} | {{ item.nomOperador }}
+        </td>
+        <td>
+          {{ item.riesgo }}
+        </td>
+        <td>{{ item.desvio }}</td>
+        <td>
+          <p *ngIf="item.casco == true">Si</p>
+          <p *ngIf="item.casco == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.lentes == true">Si</p>
+          <p *ngIf="item.lentes == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.guantes == true">Si</p>
+          <p *ngIf="item.guantes == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.uniforme == true">Si</p>
+          <p *ngIf="item.uniforme == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.zapatos == true">Si</p>
+          <p *ngIf="item.zapatos == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.uni_fajado == true">Si</p>
+          <p *ngIf="item.uni_fajado == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.tapones == true">Si</p>
+          <p *ngIf="item.tapones == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.mascarilla == true">Si</p>
+          <p *ngIf="item.mascarilla == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.careta == true">Si</p>
+          <p *ngIf="item.careta == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.arnes == true">Si</p>
+          <p *ngIf="item.arnes == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.polainas == true">Si</p>
+          <p *ngIf="item.polainas == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.peto == true">Si</p>
+          <p *ngIf="item.peto == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.gogles == true">Si</p>
+          <p *ngIf="item.gogles == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.otros == true">Si</p>
+          <p *ngIf="item.otros == false">No</p>
+        </td>
+        <td>
+          {{ item.otro_descrip }}
+        </td>
+        <td>
+          {{ item.act_inseguros }}
+        </td>
+        <td>
+          {{ item.acc_correctiva }}
+        </td>
+        <td>
+          {{ item.cond_inseguras }}
+        </td>
+        <td>
+          {{ item.compromisos }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <app-sin-informacion *ngIf="_sinInfo"></app-sin-informacion>
+</div>
+<app-loading-circle *ngIf="_loading"></app-loading-circle>

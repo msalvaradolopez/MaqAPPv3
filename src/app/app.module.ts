@@ -43,6 +43,7 @@ import { ConInsPecComponent } from './con-ins-pec/con-ins-pec.component';
 import { DocAbposComponent } from './doc-abpos/doc-abpos.component';
 import { DocAbposdetComponent } from './doc-abposdet/doc-abposdet.component';
 import { FiltrosAbposComponent } from './filtros-abpos/filtros-abpos.component';
+import { ConAbposComponent } from './con-abpos/con-abpos.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { FiltrosAbposComponent } from './filtros-abpos/filtros-abpos.component';
     DocAbposComponent,
     DocAbposdetComponent,
     FiltrosAbposComponent,
+    ConAbposComponent,
   ],
   imports: [
     BrowserModule,
