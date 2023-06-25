@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiURL: 'http://msalvarado.somee.com/MaqAPI/api',
+  apiURL: 'https://msalvarado.somee.com/MaqAPI/api',
 };

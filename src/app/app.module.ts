@@ -44,6 +44,10 @@ import { DocAbposComponent } from './doc-abpos/doc-abpos.component';
 import { DocAbposdetComponent } from './doc-abposdet/doc-abposdet.component';
 import { FiltrosAbposComponent } from './filtros-abpos/filtros-abpos.component';
 import { ConAbposComponent } from './con-abpos/con-abpos.component';
+import { DocDesvioComponent } from './doc-desvio/doc-desvio.component';
+import { DocDesviodetComponent } from './doc-desviodet/doc-desviodet.component';
+import { ConDesvioComponent } from './con-desvio/con-desvio.component';
+import { FiltrosDesvioComponent } from './filtros-desvio/filtros-desvio.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +87,10 @@ import { ConAbposComponent } from './con-abpos/con-abpos.component';
     DocAbposdetComponent,
     FiltrosAbposComponent,
     ConAbposComponent,
+    DocDesvioComponent,
+    DocDesviodetComponent,
+    ConDesvioComponent,
+    FiltrosDesvioComponent,
   ],
   imports: [
     BrowserModule,
@@ -90,7 +98,11 @@ import { ConAbposComponent } from './con-abpos/con-abpos.component';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(), // ToastrModule added
+    ToastrModule.forRoot({
+      progressBar: true,
+      progressAnimation: 'increasing',
+      preventDuplicates: true,
+    }),
   ],
   providers: [ServiciosService],
   bootstrap: [AppComponent],

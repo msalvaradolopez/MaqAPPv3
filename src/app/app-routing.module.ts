@@ -14,6 +14,7 @@ import { CatOperadoresDetComponent } from './cat-operadores-det/cat-operadores-d
 import { CatOperadoresComponent } from './cat-operadores/cat-operadores.component';
 import { ConAbposComponent } from './con-abpos/con-abpos.component';
 import { ConBitSegComponent } from './con-bit-seg/con-bit-seg.component';
+import { ConDesvioComponent } from './con-desvio/con-desvio.component';
 import { ConInsPecComponent } from './con-ins-pec/con-ins-pec.component';
 import { ConTableroComponent } from './con-tablero/con-tablero.component';
 import { ConUbicacionesComponent } from './con-ubicaciones/con-ubicaciones.component';
@@ -22,11 +23,14 @@ import { DocAbposdetComponent } from './doc-abposdet/doc-abposdet.component';
 import { DocBitSegDetEquipoComponent } from './doc-bit-seg-det-equipo/doc-bit-seg-det-equipo.component';
 import { DocBitSegDetComponent } from './doc-bit-seg-det/doc-bit-seg-det.component';
 import { DocBitSegComponent } from './doc-bit-seg/doc-bit-seg.component';
+import { DocDesvioComponent } from './doc-desvio/doc-desvio.component';
+import { DocDesviodetComponent } from './doc-desviodet/doc-desviodet.component';
 import { DocInsPecDetComponent } from './doc-ins-pec-det/doc-ins-pec-det.component';
 import { DocInsPecComponent } from './doc-ins-pec/doc-ins-pec.component';
 import { DocUbicacionesDetComponent } from './doc-ubicaciones-det/doc-ubicaciones-det.component';
 import { DocUbicacionesComponent } from './doc-ubicaciones/doc-ubicaciones.component';
 import { FiltrosAbposComponent } from './filtros-abpos/filtros-abpos.component';
+import { FiltrosDesvioComponent } from './filtros-desvio/filtros-desvio.component';
 import { FiltrosInsPecComponent } from './filtros-ins-pec/filtros-ins-pec.component';
 import { FiltrosComponent } from './filtros/filtros.component';
 import { FrmBitSegComponent } from './frm-bit-seg/frm-bit-seg.component';
@@ -66,6 +70,10 @@ const routes: Routes = [
   { path: 'FiltrosAbPos', component: FiltrosAbposComponent },
   { path: 'docAbPosDet', component: DocAbposdetComponent },
   { path: 'conAbPos', component: ConAbposComponent },
+  { path: 'docDesvio', component: DocDesvioComponent },
+  { path: 'docDesvioDet', component: DocDesviodetComponent },
+  { path: 'conDesvio', component: ConDesvioComponent },
+  { path: 'FiltrosDesvio', component: FiltrosDesvioComponent },
 ];
 
 @NgModule({

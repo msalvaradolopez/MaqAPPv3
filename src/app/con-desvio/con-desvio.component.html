@@ -1,0 +1,168 @@
+<br />
+<div class="seccion-titulo">
+  <div class="menu-catalogos">
+    <h2 class="colorBlanco">Consultas Desvios</h2>
+    <div style="max-width: 350px; min-width: 100px">
+      <a class="boton-filtros" (click)="btnFiltros()">
+        <i class="fa-solid fa-filter centrar-icono icono-xlg"></i>
+        <span class="textoBtn"> &thinsp;Filtrar</span>
+      </a>
+    </div>
+  </div>
+</div>
+<br />
+<div class="rectangle-standard vertical-scroll">
+  <table class="table-standard">
+    <thead>
+      <tr>
+        <th>idDesvio</th>
+        <th>Fecha</th>
+        <th>Empresa</th>
+        <th>Responsable</th>
+        <th>Trabajador</th>
+        <th>Tabulador</th>
+        <th>Area</th>
+        <th>Evento</th>
+        <th>Estado Prisa</th>
+        <th>Estado Frustracion</th>
+        <th>Estado Fatiga</th>
+        <th>Estado Complacencia</th>
+        <th>Error Ojos en la tarea</th>
+        <th>Error mente no en la tarea</th>
+        <th>Error Colocarse en la linea de fuego</th>
+        <th>Error Perder Equilibrio</th>
+        <th>Observaciones</th>
+        <th>Caidas</th>
+        <th>Golpes</th>
+        <th>Quemaduras</th>
+        <th>Asfixia</th>
+        <th>Electrocucion</th>
+        <th>Objetos que golpean</th>
+        <th>Accidentes vehiculares</th>
+        <th>Actitud</th>
+        <th>Procedimiento de trabajo</th>
+        <th>Permiso de trabajo</th>
+        <th>E.P.P.</th>
+        <th>Herramientas y equipos</th>
+        <th>Posicion de las personas</th>
+        <th>Orden y limpieza</th>
+        <th>Reaccion de la persona</th>
+        <th>Compromisos del trabajador</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of _List">
+        <td>{{ item.idDesvio }}</td>
+        <td style="width: 40px">{{ item.fecha | date : "dd/MM HH:mm" }}</td>
+        <td style="text-align: left">{{ item.idObra }} | {{ item.nomObra }}</td>
+        <td style="text-align: left">
+          {{ item.idSupervisor }} | {{ item.nomSupervisor }}
+        </td>
+        <td style="text-align: left">
+          {{ item.idOperador }} | {{ item.nomOperador }}
+        </td>
+        <td>
+          {{ item.numTabulador }}
+        </td>
+        <td>{{ item.area }}</td>
+        <td>{{ item.evento }}</td>
+        <td>
+          <p *ngIf="item.estado_prisa == true">Si</p>
+          <p *ngIf="item.estado_prisa == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.estado_frustacion == true">Si</p>
+          <p *ngIf="item.estado_frustacion == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.estado_fatiga == true">Si</p>
+          <p *ngIf="item.estado_fatiga == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.estado_complacencia == true">Si</p>
+          <p *ngIf="item.estado_complacencia == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.error_ojos_no_tarea == true">Si</p>
+          <p *ngIf="item.error_ojos_no_tarea == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.error_mente_no_tarea == true">Si</p>
+          <p *ngIf="item.error_mente_no_tarea == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.error_mala_colocacion == true">Si</p>
+          <p *ngIf="item.error_mala_colocacion == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.error_perdida_equilibrio == true">Si</p>
+          <p *ngIf="item.error_perdida_equilibrio == false">No</p>
+        </td>
+        <td>{{ item.observaciones }}</td>
+        <td>
+          <p *ngIf="item.caidas == true">Si</p>
+          <p *ngIf="item.caidas == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.golpes == true">Si</p>
+          <p *ngIf="item.golpes == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.quemaduras == true">Si</p>
+          <p *ngIf="item.quemaduras == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.asfixia == true">Si</p>
+          <p *ngIf="item.asfixia == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.eletrocucion == true">Si</p>
+          <p *ngIf="item.eletrocucion == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.objetos_que_golpean == true">Si</p>
+          <p *ngIf="item.objetos_que_golpean == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.accidentes_vehiculares == true">Si</p>
+          <p *ngIf="item.accidentes_vehiculares == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.actitud == true">Si</p>
+          <p *ngIf="item.actitud == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.procedimiento_de_trabajo == true">Si</p>
+          <p *ngIf="item.procedimiento_de_trabajo == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.permiso_de_trabajo == true">Si</p>
+          <p *ngIf="item.permiso_de_trabajo == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.e_p_p == true">Si</p>
+          <p *ngIf="item.e_p_p == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.herremientas_y_equipos == true">Si</p>
+          <p *ngIf="item.herremientas_y_equipos == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.posicion_de_las_personas == true">Si</p>
+          <p *ngIf="item.posicion_de_las_personas == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.orden_y_limpieza == true">Si</p>
+          <p *ngIf="item.orden_y_limpieza == false">No</p>
+        </td>
+        <td>
+          <p *ngIf="item.reaccion_de_la_persona == true">Si</p>
+          <p *ngIf="item.reaccion_de_la_persona == false">No</p>
+        </td>
+        <td>{{ item.compromiso_establecido }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <app-sin-informacion *ngIf="_sinInfo"></app-sin-informacion>
+</div>
+<app-loading-circle *ngIf="_loading"></app-loading-circle>

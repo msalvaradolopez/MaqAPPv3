@@ -10,10 +10,12 @@
         <i class="fa-solid fa-house icono-xlg centrar-icono"></i>
       </a>
       <a
+        *ngIf="_accion == 'E'"
         class="boton-regresar color-verde icono-posicion-tres"
         (click)="btnFormato()"
       >
         <i class="fa-solid fa-file icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;PDF</span>
       </a>
       <a
         class="boton-guardar color-verde icono-posicion-dos"

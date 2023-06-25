@@ -1,0 +1,758 @@
+<br />
+<div class="seccion-titulo">
+  <div class="menu-catalogos">
+    <h2 class="colorBlanco">Desvio : {{ _accionTxt }}</h2>
+    <div style="max-width: 450px; min-width: 100px">
+      <a class="boton-regresar color-verde" (click)="btnRegresar()">
+        <i class="fa-solid fa-house icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;Regresar</span>
+      </a>
+      <a
+        *ngIf="_accion == 'E'"
+        class="boton-regresar color-verde icono-posicion-tres"
+        (click)="btnFormato()"
+      >
+        <i class="fa-solid fa-file icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;PDF</span>
+      </a>
+      <a
+        *ngIf="_accion == 'E'"
+        class="boton-regresar color-verde"
+        (click)="btnEliminar()"
+      >
+        <i class="fa-solid fa-trash icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;Eliminar</span>
+      </a>
+      <a class="boton-guardar color-verde" (click)="btnGuardar()">
+        <i class="fa-solid fa-floppy-disk icono-xlg centrar-icono"></i>
+        <span class="textoBtn"> &thinsp;Guardar</span>
+      </a>
+    </div>
+  </div>
+</div>
+<br />
+<div class="seccion-principal">
+  <div class="capturaBackGround">
+    <form class="formsClass" autocomplete="off">
+      <label for="_fecha" class="labelInput">Fecha</label>
+      <input
+        type="text"
+        class="inputReadOnlyClass"
+        [(ngModel)]="_fecha"
+        [value]="_fecha"
+        name="_fecha"
+        id="datepicker"
+        readonly="true"
+      />
+
+      <label for="empresa" class="labelInput">Administrativo/Obra</label>
+      <input
+        type="text"
+        id="empresa"
+        name="empresa"
+        class="inputReadOnlyClass"
+        readonly="true"
+        placeholder="click para buscar..."
+        [(ngModel)]="_Item.nomObra"
+        (click)="buscarEmpresa()"
+      />
+
+      <label for="responsable" class="labelInput">Realizado por</label>
+      <input
+        type="text"
+        id="responsable"
+        name="responsable"
+        class="inputReadOnlyClass"
+        readonly="true"
+        placeholder="click para buscar..."
+        [(ngModel)]="_Item.nomSupervisor"
+        (click)="buscarResponsable()"
+      />
+
+      <label for="trabajador" class="labelInput">Nombre involucrado</label>
+      <input
+        type="text"
+        id="trabajador"
+        name="trabajador"
+        class="inputReadOnlyClass"
+        readonly="true"
+        placeholder="click para buscar..."
+        [(ngModel)]="_Item.nomOperador"
+        (click)="buscarTrabajador()"
+      />
+
+      <label for="numTabulador" class="labelInput">Numero Tabulador</label>
+      <input
+        type="text"
+        id="numTabulador"
+        name="numTabulador"
+        class="inputClass"
+        [(ngModel)]="_Item.numTabulador"
+      />
+
+      <label for="evento" class="labelInput">Evento</label>
+      <input
+        type="text"
+        id="evento"
+        name="evento"
+        class="inputClass"
+        [(ngModel)]="_Item.evento"
+      />
+
+      <label for="area" class="labelInput">Area</label>
+      <input
+        type="text"
+        id="area"
+        name="area"
+        class="inputClass"
+        [(ngModel)]="_Item.area"
+      />
+    </form>
+  </div>
+
+  <div class="capturaBackGround" style="margin-top: 10px">
+    <form class="formsClass" autocomplete="off">
+      <label for="estado_prisa" class="labelInput">Estado PRISA</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="estado_prisa"
+          #estado_prisa
+          [(ngModel)]="_Item.estado_prisa"
+          name="estado_prisa"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px; color: red"
+          *ngIf="estado_prisa.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!estado_prisa.checked"
+        >
+          NO
+        </div>
+      </div>
+      <label for="estado_frustacion" class="labelInput"
+        >Estado FRUSTRACION</label
+      >
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="estado_frustacion"
+          #estado_frustacion
+          [(ngModel)]="_Item.estado_frustacion"
+          name="estado_frustacion"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px; color: red"
+          *ngIf="estado_frustacion.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!estado_frustacion.checked"
+        >
+          NO
+        </div>
+      </div>
+      <label for="estado_fatiga" class="labelInput">Estado FATIGA</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="estado_fatiga"
+          #estado_fatiga
+          [(ngModel)]="_Item.estado_fatiga"
+          name="estado_fatiga"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px; color: red"
+          *ngIf="estado_fatiga.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!estado_fatiga.checked"
+        >
+          NO
+        </div>
+      </div>
+      <label for="estado_complacencia" class="labelInput"
+        >Estado COMPLACENCIA</label
+      >
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="estado_complacencia"
+          #estado_complacencia
+          [(ngModel)]="_Item.estado_complacencia"
+          name="estado_complacencia"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px; color: red"
+          *ngIf="estado_complacencia.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!estado_complacencia.checked"
+        >
+          NO
+        </div>
+      </div>
+      <label for="error_ojos_no_tarea" class="labelInput"
+        >Estado OJOS EN LA TAREA</label
+      >
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="error_ojos_no_tarea"
+          #error_ojos_no_tarea
+          [(ngModel)]="_Item.error_ojos_no_tarea"
+          name="error_ojos_no_tarea"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px; color: red"
+          *ngIf="error_ojos_no_tarea.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!error_ojos_no_tarea.checked"
+        >
+          NO
+        </div>
+      </div>
+      <label for="error_mente_no_tarea" class="labelInput"
+        >Estado MENTE NO EN LA TAREA</label
+      >
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="error_mente_no_tarea"
+          #error_mente_no_tarea
+          [(ngModel)]="_Item.error_mente_no_tarea"
+          name="error_mente_no_tarea"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px; color: red"
+          *ngIf="error_mente_no_tarea.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!error_mente_no_tarea.checked"
+        >
+          NO
+        </div>
+      </div>
+      <label for="error_mala_colocacion" class="labelInput"
+        >Estado COLOCARSE EN LA LINEA DE FUEGO</label
+      >
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="error_mala_colocacion"
+          #error_mala_colocacion
+          [(ngModel)]="_Item.error_mala_colocacion"
+          name="error_mala_colocacion"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px; color: red"
+          *ngIf="error_mala_colocacion.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!error_mala_colocacion.checked"
+        >
+          NO
+        </div>
+      </div>
+      <label for="error_perdida_equilibrio" class="labelInput"
+        >Estado PERDER EQUILIBRIO, TRACCION O AGARRE</label
+      >
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="error_perdida_equilibrio"
+          #error_perdida_equilibrio
+          [(ngModel)]="_Item.error_perdida_equilibrio"
+          name="error_perdida_equilibrio"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px; color: red"
+          *ngIf="error_perdida_equilibrio.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!error_perdida_equilibrio.checked"
+        >
+          NO
+        </div>
+      </div>
+      <label for="observaciones" class="labelInput">Observaciones</label>
+      <input
+        type="text"
+        id="observaciones"
+        name="observaciones"
+        class="inputClass"
+        [(ngModel)]="_Item.observaciones"
+      />
+    </form>
+  </div>
+
+  <div class="capturaBackGround" style="margin-top: 10px">
+    <form class="formsClass" autocomplete="off">
+      <label for="caidas" class="labelInput">CAIDAS</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="caidas"
+          #caidas
+          [(ngModel)]="_Item.caidas"
+          name="caidas"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px; color: red"
+          *ngIf="caidas.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!caidas.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="golpes" class="labelInput">GOLPES</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="golpes"
+          #golpes
+          [(ngModel)]="_Item.golpes"
+          name="golpes"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px; color: red"
+          *ngIf="golpes.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!golpes.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="quemaduras" class="labelInput">QUEMADURAS</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="quemaduras"
+          #quemaduras
+          [(ngModel)]="_Item.quemaduras"
+          name="quemaduras"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px; color: red"
+          *ngIf="quemaduras.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!quemaduras.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="asfixia" class="labelInput">ASFIXIA</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="asfixia"
+          #asfixia
+          [(ngModel)]="_Item.asfixia"
+          name="asfixia"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px; color: red"
+          *ngIf="asfixia.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!asfixia.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="eletrocucion" class="labelInput">ELECTROCUCION</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="eletrocucion"
+          #eletrocucion
+          [(ngModel)]="_Item.eletrocucion"
+          name="eletrocucion"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px; color: red"
+          *ngIf="eletrocucion.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!eletrocucion.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="objetos_que_golpean" class="labelInput"
+        >OBJETOS QUE GOLPEAN</label
+      >
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="objetos_que_golpean"
+          #objetos_que_golpean
+          [(ngModel)]="_Item.objetos_que_golpean"
+          name="objetos_que_golpean"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px; color: red"
+          *ngIf="objetos_que_golpean.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!objetos_que_golpean.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="accidentes_vehiculares" class="labelInput"
+        >ACCIDENTES VEHICULARES</label
+      >
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="accidentes_vehiculares"
+          #accidentes_vehiculares
+          [(ngModel)]="_Item.accidentes_vehiculares"
+          name="accidentes_vehiculares"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px; color: red"
+          *ngIf="accidentes_vehiculares.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!accidentes_vehiculares.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="actitud" class="labelInput">ACTITUD</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="actitud"
+          #actitud
+          [(ngModel)]="_Item.actitud"
+          name="actitud"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px; color: red"
+          *ngIf="actitud.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!actitud.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="procedimiento_de_trabajo" class="labelInput"
+        >PROCEDIMIENTO DE TRABAJO</label
+      >
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="procedimiento_de_trabajo"
+          #procedimiento_de_trabajo
+          [(ngModel)]="_Item.procedimiento_de_trabajo"
+          name="procedimiento_de_trabajo"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px; color: red"
+          *ngIf="procedimiento_de_trabajo.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!procedimiento_de_trabajo.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="permiso_de_trabajo" class="labelInput"
+        >PERMISO DE TRABAJO</label
+      >
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="permiso_de_trabajo"
+          #permiso_de_trabajo
+          [(ngModel)]="_Item.permiso_de_trabajo"
+          name="permiso_de_trabajo"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px; color: red"
+          *ngIf="permiso_de_trabajo.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!permiso_de_trabajo.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="e_p_p" class="labelInput">E. P. P.</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="e_p_p"
+          #e_p_p
+          [(ngModel)]="_Item.e_p_p"
+          name="e_p_p"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px; color: red"
+          *ngIf="e_p_p.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!e_p_p.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="herremientas_y_equipos" class="labelInput"
+        >HERRAMIENTAS Y EQUIPO</label
+      >
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="herremientas_y_equipos"
+          #herremientas_y_equipos
+          [(ngModel)]="_Item.herremientas_y_equipos"
+          name="herremientas_y_equipos"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px; color: red"
+          *ngIf="herremientas_y_equipos.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!herremientas_y_equipos.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="posicion_de_las_personas" class="labelInput"
+        >POSIOCION DE LAS PERSONAS</label
+      >
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="posicion_de_las_personas"
+          #posicion_de_las_personas
+          [(ngModel)]="_Item.posicion_de_las_personas"
+          name="posicion_de_las_personas"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px; color: red"
+          *ngIf="posicion_de_las_personas.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!posicion_de_las_personas.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="orden_y_limpieza" class="labelInput">ORDEN Y LIMPIEZA</label>
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="orden_y_limpieza"
+          #orden_y_limpieza
+          [(ngModel)]="_Item.orden_y_limpieza"
+          name="orden_y_limpieza"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px; color: red"
+          *ngIf="orden_y_limpieza.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!orden_y_limpieza.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="reaccion_de_la_persona" class="labelInput"
+        >REACCION DE LA PERSONA</label
+      >
+      <div class="texto-linea">
+        <input
+          type="checkbox"
+          id="reaccion_de_la_persona"
+          #reaccion_de_la_persona
+          [(ngModel)]="_Item.reaccion_de_la_persona"
+          name="reaccion_de_la_persona"
+          class="toggle"
+        />
+        <div
+          class="labelInput"
+          style="margin-left: 20px; color: red"
+          *ngIf="reaccion_de_la_persona.checked"
+        >
+          SI
+        </div>
+        <div
+          class="labelInput"
+          style="margin-left: 20px"
+          *ngIf="!reaccion_de_la_persona.checked"
+        >
+          NO
+        </div>
+      </div>
+
+      <label for="compromiso_establecido" class="labelInput"
+        >Compromiso establecido</label
+      >
+      <input
+        type="text"
+        id="compromiso_establecido"
+        name="compromiso_establecido"
+        class="inputClass"
+        [(ngModel)]="_Item.compromiso_establecido"
+      />
+    </form>
+  </div>
+</div>
+
+<app-loading-circle *ngIf="_loading"></app-loading-circle>
