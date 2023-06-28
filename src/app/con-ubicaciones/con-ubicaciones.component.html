@@ -1,111 +1,57 @@
 <br />
 <div class="seccion-titulo">
   <div class="menu-catalogos">
-    <h2 class="colorBlanco">Consulta - ubicaciones</h2>
-
-    <a class="boton-filtros" (click)="btnFiltros()">
-      <i class="fa-solid fa-filter centrar-icono icono-xlg"></i>
-      <span class="textoBtn"> &thinsp;Filtrar</span>
-    </a>
-  </div>
-</div>
-<div class="seccion-principal">
-  <div class="card-item consulta-ubicaciones" style="margin-bottom: 1px">
-    <div class="card-item-table">
-      <div class="letra1">Equipo</div>
-      <div class="letra1">Obra</div>
-      <div class="letra1">Operador</div>
-      <div class="letra1">Fecha</div>
-      <div class="letra1">Odometro</div>
-      <div class="letra1">Sello</div>
-      <div class="letra1">Litros</div>
-      <div class="letra1">Horometro</div>
-      <div class="letra1">Tipo</div>
-      <div class="letra1">Usuario</div>
+    <h2 class="colorBlanco">Consulta Ubicaciones</h2>
+    <div style="max-width: 350px; min-width: 100px">
+      <a class="boton-filtros" (click)="btnExportar()">
+        <i class="fa-solid fa-file-excel centrar-icono icono-xlg"></i>
+        <span class="textoBtn"> &thinsp;Exportar</span>
+      </a>
+      <a class="boton-filtros" (click)="btnFiltros()">
+        <i class="fa-solid fa-filter centrar-icono icono-xlg"></i>
+        <span class="textoBtn"> &thinsp;Filtrar</span>
+      </a>
     </div>
   </div>
-
-  <ul class="list-cards consulta-ubicaciones">
-    <li *ngFor="let item of _listado" class="card-item">
-      <div class="card-item-table">
-        <div class="letra1">{{ item.idEconomico }}</div>
-        <div class="letra1">{{ item.idObra }}</div>
-        <div class="letra1">{{ item.idOperador }}</div>
-        <div class="letra1">{{ item.fecha_alta | date : "mediumDate" }}</div>
-        <div class="letra1">{{ item.odometro }}</div>
-        <div class="letra1">{{ item.sello }}</div>
-        <div class="letra1">{{ item.litros }}</div>
-        <div class="letra1">{{ item.horometro }}</div>
-        <div class="letra1">{{ item.ventana }}</div>
-        <div class="letra1">{{ item.idUsuario }}</div>
-      </div>
-      <div class="letra2">
-        {{ item.equipoNom }} | {{ item.obraNom }} | {{ item.operadorNom }}
-      </div>
-      <div class="letra2">
-        {{ item.comentarios }}
-      </div>
-    </li>
-  </ul>
-
-  <ul class="list-cards consulta-ubicaciones-mobile">
-    <li
-      *ngFor="let item of _listado"
-      class="card-item"
-      style="margin-bottom: 1px"
-    >
-      <div class="card-item-table-mobile">
-        <div class="letra1 justifica-items borde-abajo">
-          <p>Equipo</p>
-          <p class="letra2 margen-arriba-abajo">{{ item.idEconomico }}</p>
-        </div>
-        <div class="letra1 justifica-items borde-abajo">
-          <p>Obra</p>
-          <p class="letra2 margen-arriba-abajo">{{ item.idObra }}</p>
-        </div>
-        <div class="letra1 justifica-items borde-abajo">
-          <p>Operador</p>
-          <p class="letra2 margen-arriba-abajo">{{ item.idOperador }}</p>
-        </div>
-        <div class="letra1 justifica-items borde-abajo">
-          <p>Fecha</p>
-          <p class="letra2 margen-arriba-abajo">
-            {{ item.fecha_alta | date : "mediumDate" }}
-          </p>
-        </div>
-        <div class="letra1 justifica-items borde-abajo">
-          <p>Odometro</p>
-          <p class="letra2 margen-arriba-abajo">{{ item.odometro }}</p>
-        </div>
-        <div class="letra1 justifica-items borde-abajo">
-          <p>Sello</p>
-          <p class="letra2 margen-arriba-abajo">{{ item.sello }}</p>
-        </div>
-        <div class="letra1 justifica-items borde-abajo">
-          <p>Listros</p>
-          <p class="letra2 margen-arriba-abajo">{{ item.litros }}</p>
-        </div>
-        <div class="letra1 justifica-items borde-abajo">
-          <p>Orometro</p>
-          <p class="letra2 margen-arriba-abajo">{{ item.horometro }}</p>
-        </div>
-        <div class="letra1 justifica-items borde-abajo">
-          <p>Tipo</p>
-          <p class="letra2 margen-arriba-abajo">{{ item.ventana }}</p>
-        </div>
-        <div class="letra1 justifica-items borde-abajo">
-          <p>Usuario</p>
-          <p class="letra2 margen-arriba-abajo">{{ item.idUsuario }}</p>
-        </div>
-      </div>
-      <div class="letra2">
-        {{ item.equipoNom }} | {{ item.obraNom }} | {{ item.operadorNom }}
-      </div>
-      <div class="letra2">
-        {{ item.comentarios }}
-      </div>
-    </li>
-  </ul>
+</div>
+<br />
+<div class="rectangle-standard vertical-scroll">
+  <table class="table-standard">
+    <thead>
+      <tr>
+        <th>Equipo</th>
+        <th>Obra</th>
+        <th>Operador</th>
+        <th>Fecha</th>
+        <th>Odometro</th>
+        <th>Sello</th>
+        <th>Litros</th>
+        <th>Horometro</th>
+        <th>Tipo</th>
+        <th>Usuario</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of _List">
+        <td style="text-align: left">
+          {{ item.idEconomico }} | {{ item.equipoNom }}
+        </td>
+        <td style="text-align: left">{{ item.idObra }} | {{ item.obraNom }}</td>
+        <td style="text-align: left">
+          {{ item.idOperador }} | {{ item.operadorNom }}
+        </td>
+        <td style="width: 40px">{{ item.fecha_alta | date : "mediumDate" }}</td>
+        <td>
+          {{ item.odometro }}
+        </td>
+        <td>{{ item.sello }}</td>
+        <td>{{ item.litros }}</td>
+        <td>{{ item.horometro }}</td>
+        <td>{{ item.ventana }}</td>
+        <td>{{ item.idUsuario }}</td>
+      </tr>
+    </tbody>
+  </table>
   <app-sin-informacion *ngIf="_sinInfo"></app-sin-informacion>
 </div>
 <app-loading-circle *ngIf="_loading"></app-loading-circle>

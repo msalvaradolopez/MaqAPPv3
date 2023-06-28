@@ -17,7 +17,7 @@ export class ConUbicacionesComponent implements OnInit {
   _sinInfo: boolean = false;
   _fechaActual: Date = new Date();
 
-  _listado: IUbicacion[] = [];
+  _List: IUbicacion[] = [];
   _fecha: string = '';
   _filtros: IFiltros = {
     idUbicacion: 0,
@@ -54,7 +54,7 @@ export class ConUbicacionesComponent implements OnInit {
     } else this.reiniciaFiltros();
 
     if (sessionStorage.getItem('_listado'))
-      this._listado = JSON.parse(sessionStorage.getItem('_listado')!);
+      this._List = JSON.parse(sessionStorage.getItem('_listado')!);
     else {
       this._filtros.fecha_alta = this._svrUtilierias.convertStringToDate(
         this._fecha
@@ -64,7 +64,7 @@ export class ConUbicacionesComponent implements OnInit {
         .wsGeneral('ubicaciones/getListFilter', this._filtros)
         .subscribe(
           (resp) => {
-            this._listado = resp;
+            this._List = resp;
           },
           (error) => {
             this._toastr.error(
@@ -74,14 +74,14 @@ export class ConUbicacionesComponent implements OnInit {
             this._loading = false;
           },
           () => {
-            this._listado = this._listado.map((x) => {
+            this._List = this._List.map((x) => {
               x.idEconomicoTXT = x.idEconomico + ' | ' + x.equipoNom;
               x.idOperadorTXT = x.idOperador + ' | ' + x.operadorNom;
               x.idObraTXT = x.idObra + ' | ' + x.obraNom;
               return x;
             });
             this._loading = false;
-            if (this._listado == null || this._listado.length == 0)
+            if (this._List == null || this._List.length == 0)
               this._sinInfo = true;
           }
         );
@@ -109,7 +109,7 @@ export class ConUbicacionesComponent implements OnInit {
     this._servicios
       .wsGeneral('ubicaciones/getListFilter', this._filtros)
       .subscribe(
-        (resp) => (this._listado = resp),
+        (resp) => (this._List = resp),
         (error) => {
           this._loading = false;
           this._toastr.error(
@@ -119,10 +119,57 @@ export class ConUbicacionesComponent implements OnInit {
         },
         () => {
           this._loading = false;
-          if (this._listado == null || this._listado.length == 0)
+          if (this._List == null || this._List.length == 0)
             this._sinInfo = true;
         }
       );
+  }
+
+  btnExportar() {
+    let formatoPDFbase64: string = '';
+    this._loading = true;
+    this._servicios.wsGeneral('ubicaciones/getXLSX', this._List).subscribe(
+      (resp) => {
+        formatoPDFbase64 = resp;
+        //console.log(formatoPDFbase64);
+      },
+      (error) => {
+        this._loading = false;
+        this._toastr.error(
+          'Error : ' + error.error.ExceptionMessage,
+          'Generar PDF desvios.'
+        );
+      },
+      () => {
+        sessionStorage.setItem('_listado', JSON.stringify(this._List));
+        this._loading = false;
+
+        var base64str = formatoPDFbase64;
+
+        // decode base64 string, remove space for IE compatibility
+        var binary = atob(base64str.replace(/\s/g, ''));
+        var len = binary.length;
+        var buffer = new ArrayBuffer(len);
+        var view = new Uint8Array(buffer);
+        for (var i = 0; i < len; i++) {
+          view[i] = binary.charCodeAt(i);
+        }
+
+        // create the blob object with content-type "application/pdf"
+        var blob = new Blob([view], {
+          type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        });
+        var url = URL.createObjectURL(blob);
+
+        // window.open(url, '_blank');
+
+        let link = document.createElement('a');
+        link.download = 'Ubicaciones.xlsx';
+        link.href = URL.createObjectURL(blob);
+        link.click();
+        URL.revokeObjectURL(link.href);
+      }
+    );
   }
 
   ngOnDestroy(): void {

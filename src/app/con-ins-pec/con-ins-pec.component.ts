@@ -56,6 +56,53 @@ export class ConInsPecComponent implements OnInit {
     );
   }
 
+  btnExportar() {
+    let formatoPDFbase64: string = '';
+    this._loading = true;
+    this._servicios.wsGeneral('inspec/getXLSX', this._List).subscribe(
+      (resp) => {
+        formatoPDFbase64 = resp;
+        //console.log(formatoPDFbase64);
+      },
+      (error) => {
+        this._loading = false;
+        this._toastr.error(
+          'Error : ' + error.error.ExceptionMessage,
+          'Generar XLSX Inspeccion.'
+        );
+      },
+      () => {
+        sessionStorage.setItem('_listado', JSON.stringify(this._List));
+        this._loading = false;
+
+        var base64str = formatoPDFbase64;
+
+        // decode base64 string, remove space for IE compatibility
+        var binary = atob(base64str.replace(/\s/g, ''));
+        var len = binary.length;
+        var buffer = new ArrayBuffer(len);
+        var view = new Uint8Array(buffer);
+        for (var i = 0; i < len; i++) {
+          view[i] = binary.charCodeAt(i);
+        }
+
+        // create the blob object with content-type "application/pdf"
+        var blob = new Blob([view], {
+          type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        });
+        var url = URL.createObjectURL(blob);
+
+        // window.open(url, '_blank');
+
+        let link = document.createElement('a');
+        link.download = 'Inspeccion.xlsx';
+        link.href = URL.createObjectURL(blob);
+        link.click();
+        URL.revokeObjectURL(link.href);
+      }
+    );
+  }
+
   btnFiltros() {
     this.setFiltros();
     sessionStorage.setItem('Filtros', JSON.stringify(this._Filtros));

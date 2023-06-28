@@ -19,7 +19,7 @@ export class ConBitSegComponent implements OnInit {
   _sinInfo: boolean = false;
   _fechaActual: Date = new Date();
 
-  _listado: IBitSegMaster[] = [];
+  _List: IBitSegMaster[] = [];
   _listadoDet: IBitSegDetail[] = [];
   _fecha: string = '';
   _filtros: IFiltros = {
@@ -75,7 +75,7 @@ export class ConBitSegComponent implements OnInit {
         .wsGeneral('bitSeg/getListFilter', this._filtros)
         .subscribe(
           (resp) => {
-            this._listado = resp;
+            this._List = resp;
           },
           (error) => {
             this._toastr.error(
@@ -85,14 +85,14 @@ export class ConBitSegComponent implements OnInit {
             this._loading = false;
           },
           () => {
-            this._listado.forEach((itemListado) => {
+            this._List.forEach((itemListado) => {
               itemListado.ListadoBitSeg.forEach((itemDet) => {
                 this._listadoDet.push(itemDet);
               });
             });
 
             this._loading = false;
-            if (this._listado == null || this._listado.length == 0)
+            if (this._List == null || this._List.length == 0)
               this._sinInfo = true;
           }
         );
@@ -111,7 +111,7 @@ export class ConBitSegComponent implements OnInit {
 
     this._loading = true;
     this._servicios.wsGeneral('bitSeg/getListFilter', this._filtros).subscribe(
-      (resp) => (this._listado = resp),
+      (resp) => (this._List = resp),
       (error) => {
         this._loading = false;
         this._toastr.error(
@@ -120,15 +120,14 @@ export class ConBitSegComponent implements OnInit {
         );
       },
       () => {
-        this._listado.forEach((itemListado) => {
+        this._List.forEach((itemListado) => {
           itemListado.ListadoBitSeg.forEach((itemDet) => {
             this._listadoDet.push(itemDet);
           });
         });
 
         this._loading = false;
-        if (this._listado == null || this._listado.length == 0)
-          this._sinInfo = true;
+        if (this._List == null || this._List.length == 0) this._sinInfo = true;
       }
     );
   }
@@ -148,6 +147,53 @@ export class ConBitSegComponent implements OnInit {
     if (dato == 'N') return 'NO';
 
     return '';
+  }
+
+  btnExportar() {
+    let formatoPDFbase64: string = '';
+    this._loading = true;
+    this._servicios.wsGeneral('bitSeg/getXLSX', this._listadoDet).subscribe(
+      (resp) => {
+        formatoPDFbase64 = resp;
+        //console.log(formatoPDFbase64);
+      },
+      (error) => {
+        this._loading = false;
+        this._toastr.error(
+          'Error : ' + error.error.ExceptionMessage,
+          'Generar PDF desvios.'
+        );
+      },
+      () => {
+        sessionStorage.setItem('_listadoDet', JSON.stringify(this._listadoDet));
+        this._loading = false;
+
+        var base64str = formatoPDFbase64;
+
+        // decode base64 string, remove space for IE compatibility
+        var binary = atob(base64str.replace(/\s/g, ''));
+        var len = binary.length;
+        var buffer = new ArrayBuffer(len);
+        var view = new Uint8Array(buffer);
+        for (var i = 0; i < len; i++) {
+          view[i] = binary.charCodeAt(i);
+        }
+
+        // create the blob object with content-type "application/pdf"
+        var blob = new Blob([view], {
+          type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        });
+        var url = URL.createObjectURL(blob);
+
+        // window.open(url, '_blank');
+
+        let link = document.createElement('a');
+        link.download = 'BitacoraSeguridad.xlsx';
+        link.href = URL.createObjectURL(blob);
+        link.click();
+        URL.revokeObjectURL(link.href);
+      }
+    );
   }
 
   ngOnDestroy(): void {
